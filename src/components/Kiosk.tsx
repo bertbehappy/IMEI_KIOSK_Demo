@@ -227,12 +227,12 @@ function StepSurvey1({ onNext, value, update }: { onNext: () => void, value: str
           </h2>
         </div>
         
-        <div className="flex flex-col gap-3 sm:gap-4 shrink-0 pb-4">
+        <div className="flex-1 flex flex-col gap-3 sm:gap-4 sm:gap-y-6 pb-4 sm:pb-8 shrink-0 min-h-[300px]">
           {options.map(opt => (
             <button 
               key={opt} 
               onClick={() => update(opt)}
-              className={`w-full py-5 sm:py-8 text-2xl sm:text-4xl font-black rounded-2xl border-4 transition-colors select-none shrink-0 ${
+              className={`flex-1 w-full min-h-[60px] text-2xl sm:text-4xl lg:text-5xl font-black rounded-2xl border-4 transition-colors select-none ${
                 value === opt 
                   ? 'border-[#2E7D32] bg-[#E8F5E9] text-[#2E7D32]' 
                   : 'border-gray-300 bg-white text-gray-700 shadow-sm active:bg-gray-100'
@@ -277,12 +277,12 @@ function StepSurvey2({ onNext, value, update }: { onNext: () => void, value: str
           </h2>
         </div>
         
-        <div className="flex flex-col gap-3 sm:gap-4 shrink-0 pb-4">
+        <div className="flex-1 flex flex-col gap-3 sm:gap-4 sm:gap-y-6 pb-4 sm:pb-8 shrink-0 min-h-[300px]">
           {options.map(opt => (
             <button 
               key={opt} 
               onClick={() => update(opt)}
-              className={`w-full py-5 sm:py-8 text-2xl sm:text-4xl font-black rounded-2xl border-4 transition-colors select-none shrink-0 ${
+              className={`flex-1 w-full min-h-[60px] text-2xl sm:text-4xl lg:text-5xl font-black rounded-2xl border-4 transition-colors select-none ${
                 value === opt 
                   ? 'border-[#2E7D32] bg-[#E8F5E9] text-[#2E7D32]' 
                   : 'border-gray-300 bg-white text-gray-700 shadow-sm active:bg-gray-100'
@@ -327,12 +327,12 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
           </h2>
         </div>
         
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 shrink-0">
+        <div className="flex-1 grid grid-cols-2 gap-3 sm:gap-6 lg:gap-8 min-h-0">
           {options.map(opt => (
             <button 
               key={opt} 
               onClick={() => updateObj('q3', opt)}
-              className={`py-4 sm:py-8 text-xl sm:text-3xl font-black rounded-2xl border-4 transition-colors select-none shrink-0 ${
+              className={`w-full h-full min-h-0 text-xl sm:text-3xl lg:text-5xl font-black rounded-2xl border-4 transition-colors select-none ${
                 valueObj.q3 === opt 
                   ? 'border-[#2E7D32] bg-[#E8F5E9] text-[#2E7D32]' 
                   : 'border-gray-300 bg-white text-gray-700 shadow-sm active:bg-gray-100'
@@ -343,14 +343,14 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
           ))}
         </div>
 
-        <textarea 
-          placeholder="如果有其他想說的話...(選填)"
-          value={valueObj.text || ''}
-          onChange={(e) => updateObj('text', e.target.value)}
-          className="w-full shrink-0 min-h-[120px] sm:min-h-[160px] mt-2 p-4 sm:p-6 border-4 border-gray-300 bg-white rounded-2xl text-xl sm:text-3xl focus:border-[#2E7D32] focus:ring-4 focus:ring-[#2E7D32]/20 focus:outline-none transition-all shadow-sm resize-none"
-          rows={3}
-        />
-        <div className="h-2 sm:h-4 shrink-0"></div>
+        <div className="flex-[0.5] sm:flex-[0.8] min-h-[120px] lg:min-h-[220px] mt-4 flex shrink-0">
+          <textarea 
+            placeholder="如果有其他想說的話...(選填)"
+            value={valueObj.text || ''}
+            onChange={(e) => updateObj('text', e.target.value)}
+            className="flex-1 w-full h-full p-4 sm:p-6 lg:p-8 border-4 border-gray-300 bg-white rounded-2xl text-xl sm:text-3xl lg:text-4xl focus:border-[#2E7D32] focus:ring-4 focus:ring-[#2E7D32]/20 focus:outline-none transition-all shadow-sm resize-none"
+          />
+        </div>
       </main>
 
       <footer className="p-4 sm:p-8 bg-gray-50 flex gap-6 shrink-0 border-t-2 border-gray-200/50">
@@ -471,7 +471,7 @@ export default function Kiosk() {
   };
 
   return (
-    <div className="w-full max-w-[540px] h-[100dvh] sm:h-full sm:max-h-[960px] bg-white shadow-2xl sm:rounded-2xl flex flex-col border-0 sm:border-[8px] sm:border-[#2E7D32] relative mx-auto overflow-hidden">
+    <div className="w-full h-[100dvh] sm:h-full max-w-[1920px] max-h-[1080px] bg-white shadow-2xl sm:rounded-3xl flex flex-col border-0 sm:border-[8px] lg:border-[16px] xl:border-[24px] sm:border-[#2E7D32] relative mx-auto overflow-hidden">
        <AnimatePresence mode="wait">
           <motion.div
              key={step}
