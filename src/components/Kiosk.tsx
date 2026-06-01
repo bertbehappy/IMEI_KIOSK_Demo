@@ -9,16 +9,16 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
   return (
     <div className="flex-1 flex flex-col items-center justify-between p-6 sm:p-8 text-center bg-[#FFF8E7] overflow-y-auto min-h-0 relative">
       <div className="flex flex-col items-center mt-12 sm:mt-16 shrink-0 w-full z-10">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-[#B71C1C] leading-snug tracking-widest mb-4">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-[#1B5E20] leading-snug tracking-widest mb-4">
           歡迎使用
         </h1>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#B71C1C] leading-snug tracking-widest mb-12 sm:mb-16 text-center max-w-[90%]">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1B5E20] leading-snug tracking-widest mb-12 sm:mb-16 text-center max-w-[90%]">
           跟著火獅走萬年 X<br />高齡數位互動體驗
         </h2>
         
         <button 
           onClick={onNext} 
-          className="bg-gradient-to-r from-[#D32F2F] to-[#E65100] text-white text-3xl sm:text-4xl font-black py-4 sm:py-6 px-12 sm:px-16 rounded-full shadow-lg shadow-red-900/20 active:scale-95 transition-transform select-none tracking-widest"
+          className=" bg-[#2E7D32]  text-white text-3xl sm:text-4xl font-black py-4 sm:py-6 px-12 sm:px-16 rounded-full shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest"
         >
           點我開始
         </button>
@@ -37,44 +37,79 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
 }
 
 function StepSelectItem({ onNext }: { onNext: () => void }) {
+  const [quantity, setQuantity] = useState(0);
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleItemClick = () => {
+    if (quantity < 1) {
+      setQuantity(1);
+    } else {
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 2000);
+    }
+  };
+
   return (
     <div className="flex-1 flex flex-col bg-white min-h-0 relative">
-      <header className="bg-gradient-to-r from-[#D32F2F] to-[#E65100] p-8 text-white flex flex-col items-center gap-2">
+      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
         <h1 className="text-4xl font-extrabold text-center">請選擇您的餐點</h1>
         <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
           <div className="w-[22%] h-full bg-white"></div>
         </div>
       </header>
+      
+      <AnimatePresence>
+        {showAlert && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-32 left-1/2 -translate-x-1/2 z-50 bg-[#2E7D32] text-white px-8 py-4 rounded-full text-2xl font-bold shadow-xl"
+          >
+            只能選擇一項
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <main className="flex-1 min-h-0 p-6 sm:p-8 flex flex-col gap-6 sm:gap-8 overflow-y-auto">
         <div className="flex-1 flex flex-col items-center justify-center min-h-[260px] shrink-0">
-          <div className="w-56 h-56 sm:w-80 sm:h-80 lg:w-96 lg:h-96 shrink-0 bg-white rounded-3xl flex items-center justify-center border-4 border-[#B71C1C] p-2 sm:p-4 overflow-hidden shadow-sm">
+          <div 
+            onClick={handleItemClick}
+            className={`relative w-56 h-56 sm:w-80 sm:h-80 lg:w-96 lg:h-96 shrink-0 bg-white rounded-3xl flex items-center justify-center border-4 ${quantity > 0 ? 'border-[#2E7D32] bg-[#E8F5E9]' : 'border-gray-300'} p-2 sm:p-4 overflow-hidden shadow-sm cursor-pointer transition-all active:scale-95`}
+          >
             <img 
                src={imeiLogoImg} 
                alt="義美贊助食品" 
                referrerPolicy="no-referrer"
-               className="w-full h-full object-contain scale-[1.3]"
+               className={`w-full h-full object-contain scale-[1.3] transition-transform ${quantity > 0 ? '' : 'grayscale opacity-80'}`}
             />
+            {quantity > 0 && (
+              <div className="absolute top-4 right-4 bg-[#2E7D32] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                {quantity}
+              </div>
+            )}
           </div>
           <div className="mt-6 sm:mt-8 text-center space-y-2 sm:space-y-4">
             <h2 className="text-4xl sm:text-5xl font-black text-gray-900">義美贊助食品</h2>
-            <p className="text-2xl sm:text-3xl font-bold text-[#D32F2F]">單價: NT$ 0</p>
+            <p className="text-2xl sm:text-3xl font-bold text-[#2E7D32]">單價: NT$ 0</p>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 sm:gap-6 p-4 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300 shrink-0">
           <div className="flex flex-col items-center">
             <span className="text-sm sm:text-lg text-gray-500 font-bold uppercase tracking-wider">選擇數量</span>
-            <span className="text-5xl sm:text-6xl font-black text-gray-900">1</span>
+            <span className="text-5xl sm:text-6xl font-black text-gray-900">{quantity}</span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-sm sm:text-lg text-gray-500 font-bold uppercase tracking-wider">合計金額</span>
-            <span className="text-5xl sm:text-6xl font-black text-[#D32F2F]">$0</span>
+            <span className="text-5xl sm:text-6xl font-black text-[#2E7D32]">$0</span>
           </div>
         </div>
       </main>
       <footer className="p-4 sm:p-8 bg-gray-50 flex gap-6 shrink-0 border-t-2 border-gray-200/50">
         <button 
+          disabled={quantity === 0}
           onClick={onNext} 
-          className="w-full bg-gradient-to-r from-[#D32F2F] to-[#E65100] py-6 sm:py-10 rounded-2xl text-3xl sm:text-5xl font-black text-white shadow-lg shadow-red-900/20 active:scale-95 transition-transform select-none"
+          className="w-full  bg-[#2E7D32]  py-6 sm:py-10 rounded-2xl text-3xl sm:text-5xl font-black text-white shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none disabled:opacity-50 disabled:grayscale disabled:active:scale-100"
         >
           確認選擇
         </button>
@@ -86,7 +121,7 @@ function StepSelectItem({ onNext }: { onNext: () => void }) {
 function StepConfirmOrder({ onCancel, onNext }: { onCancel: () => void, onNext: () => void }) {
   return (
     <div className="flex-1 flex flex-col bg-white min-h-0 relative">
-      <header className="bg-gradient-to-r from-[#D32F2F] to-[#E65100] p-8 text-white flex flex-col items-center gap-2">
+      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
         <h1 className="text-4xl font-extrabold text-center">確認您的訂單</h1>
         <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
           <div className="w-[33%] h-full bg-white"></div>
@@ -94,8 +129,8 @@ function StepConfirmOrder({ onCancel, onNext }: { onCancel: () => void, onNext: 
       </header>
       
       <main className="flex-1 min-h-0 p-6 sm:p-8 flex flex-col gap-6 sm:gap-8 overflow-y-auto">
-        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border-4 border-[#B71C1C] shrink-0">
-          <h3 className="text-2xl sm:text-4xl font-extrabold text-[#D32F2F] mb-6 sm:mb-8 border-b-4 border-gray-100 pb-4 sm:pb-6 uppercase tracking-wider">購物車明細</h3>
+        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border-4 border-[#2E7D32] shrink-0">
+          <h3 className="text-2xl sm:text-4xl font-extrabold text-[#2E7D32] mb-6 sm:mb-8 border-b-4 border-gray-100 pb-4 sm:pb-6 uppercase tracking-wider">購物車明細</h3>
           
           <div className="flex justify-between items-center mb-8 sm:mb-10 text-2xl sm:text-4xl">
             <span className="font-bold text-gray-900 leading-snug">義美贊助食品</span>
@@ -104,7 +139,7 @@ function StepConfirmOrder({ onCancel, onNext }: { onCancel: () => void, onNext: 
           
           <div className="border-t-4 border-dashed border-gray-300 mt-8 sm:mt-12 pt-8 sm:pt-10 flex justify-between items-center flex-wrap gap-4">
             <span className="text-3xl sm:text-5xl font-black text-gray-800">總計金額</span>
-            <span className="text-5xl sm:text-7xl font-black text-[#D32F2F]">NT$ 0</span>
+            <span className="text-5xl sm:text-7xl font-black text-[#2E7D32]">NT$ 0</span>
           </div>
         </div>
       </main>
@@ -118,7 +153,7 @@ function StepConfirmOrder({ onCancel, onNext }: { onCancel: () => void, onNext: 
         </button>
         <button 
           onClick={onNext} 
-          className="flex-[2] bg-gradient-to-r from-[#D32F2F] to-[#E65100] py-6 sm:py-10 rounded-2xl text-3xl sm:text-5xl font-black text-white shadow-lg shadow-red-900/20 active:scale-95 transition-transform select-none"
+          className="flex-[2]  bg-[#2E7D32]  py-6 sm:py-10 rounded-2xl text-3xl sm:text-5xl font-black text-white shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none"
         >
           確認結帳
         </button>
@@ -130,7 +165,7 @@ function StepConfirmOrder({ onCancel, onNext }: { onCancel: () => void, onNext: 
 function StepPaymentMethod({ onNext }: { onNext: () => void }) {
   return (
     <div className="flex-1 flex flex-col bg-white min-h-0 relative">
-      <header className="bg-gradient-to-r from-[#D32F2F] to-[#E65100] p-8 text-white flex flex-col items-center gap-2">
+      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
         <h1 className="text-4xl font-extrabold text-center">選擇付款方式</h1>
         <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
           <div className="w-[44%] h-full bg-white"></div>
@@ -138,8 +173,8 @@ function StepPaymentMethod({ onNext }: { onNext: () => void }) {
       </header>
 
       <main className="flex-1 min-h-0 p-6 sm:p-8 flex flex-col gap-4 sm:gap-8 overflow-y-auto">
-        <div className="bg-[#FFF9C4] border-4 border-[#B71C1C] rounded-2xl flex flex-col items-center justify-center py-4 sm:py-6 mb-2 sm:mb-4 shrink-0">
-          <span className="text-lg sm:text-xl font-bold tracking-widest text-[#D32F2F] opacity-80 uppercase">結帳總額</span>
+        <div className="bg-[#E8F5E9] border-4 border-[#2E7D32] rounded-2xl flex flex-col items-center justify-center py-4 sm:py-6 mb-2 sm:mb-4 shrink-0">
+          <span className="text-lg sm:text-xl font-bold tracking-widest text-[#2E7D32] opacity-80 uppercase">結帳總額</span>
           <span className="text-4xl sm:text-6xl font-black text-gray-900 mt-1 sm:mt-2">NT$ 0</span>
         </div>
 
@@ -168,7 +203,7 @@ function StepPaymentMethod({ onNext }: { onNext: () => void }) {
 function StepPaymentSuccess({ onNext }: { onNext: () => void }) {
   return (
     <div className="flex-1 flex flex-col bg-white min-h-0 relative">
-      <header className="bg-gradient-to-r from-[#D32F2F] to-[#E65100] p-8 text-white flex flex-col items-center gap-2">
+      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
         <h1 className="text-4xl font-extrabold text-center">交易完成</h1>
         <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
           <div className="w-[55%] h-full bg-white"></div>
@@ -180,9 +215,9 @@ function StepPaymentSuccess({ onNext }: { onNext: () => void }) {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", bounce: 0.5 }}
-          className="w-32 h-32 sm:w-48 sm:h-48 shrink-0 bg-[#FFF9C4] border-4 border-[#B71C1C] rounded-3xl flex items-center justify-center mb-8 sm:mb-12 shadow-lg"
+          className="w-32 h-32 sm:w-48 sm:h-48 shrink-0 bg-[#E8F5E9] border-4 border-[#2E7D32] rounded-3xl flex items-center justify-center mb-8 sm:mb-12 shadow-lg"
         >
-          <CheckCircle2 className="text-[#D32F2F] w-16 h-16 sm:w-[100px] sm:h-[100px]" />
+          <CheckCircle2 className="text-[#2E7D32] w-16 h-16 sm:w-[100px] sm:h-[100px]" />
         </motion.div>
         
         <h2 className="text-4xl sm:text-6xl font-black text-gray-900 leading-tight mb-6 sm:mb-8 shrink-0">付款成功！</h2>
@@ -194,7 +229,7 @@ function StepPaymentSuccess({ onNext }: { onNext: () => void }) {
       <footer className="p-4 sm:p-8 bg-gray-50 flex gap-6 shrink-0 border-t-2 border-gray-200/50">
         <button 
           onClick={onNext} 
-          className="w-full bg-gradient-to-r from-[#D32F2F] to-[#E65100] text-white text-3xl sm:text-5xl font-black py-8 sm:py-10 rounded-2xl shadow-lg shadow-red-900/20 active:scale-95 transition-transform select-none"
+          className="w-full  bg-[#2E7D32]  text-white text-3xl sm:text-5xl font-black py-8 sm:py-10 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none"
         >
           開始填寫問卷
         </button>
@@ -208,7 +243,7 @@ function StepSurvey1({ onNext, value, update }: { onNext: () => void, value: str
   
   return (
     <div className="flex-1 flex flex-col bg-white min-h-0 relative">
-      <header className="bg-gradient-to-r from-[#D32F2F] to-[#E65100] p-8 text-white flex flex-col items-center gap-2">
+      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
         <h1 className="text-4xl font-extrabold text-center">互動數位體驗</h1>
         <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
           <div className="w-[66%] h-full bg-white"></div>
@@ -217,7 +252,7 @@ function StepSurvey1({ onNext, value, update }: { onNext: () => void, value: str
 
       <main className="flex-1 min-h-0 p-4 sm:p-8 flex flex-col gap-4 sm:gap-8 bg-gray-50 overflow-y-auto">
         <div className="bg-white p-6 sm:p-8 rounded-2xl border-4 border-gray-200 shadow-sm shrink-0">
-          <p className="text-[#D32F2F] font-bold text-xl mb-2 items-center flex gap-2">
+          <p className="text-[#2E7D32] font-bold text-xl mb-2 items-center flex gap-2">
             內容式防詐小問題
           </p>
           <h2 className="text-3xl sm:text-4xl font-black text-gray-900 leading-snug">
@@ -232,7 +267,7 @@ function StepSurvey1({ onNext, value, update }: { onNext: () => void, value: str
               onClick={() => update(opt)}
               className={`flex-1 w-full min-h-[60px] text-xl sm:text-3xl lg:text-4xl font-black rounded-2xl border-4 transition-colors select-none text-left pl-6 sm:pl-8 ${
                 value === opt 
-                  ? 'border-[#B71C1C] bg-[#FFF9C4] text-[#D32F2F]' 
+                  ? 'border-[#2E7D32] bg-[#E8F5E9] text-[#2E7D32]' 
                   : 'border-gray-300 bg-white text-gray-700 shadow-sm active:bg-gray-100'
               }`}
             >
@@ -246,7 +281,7 @@ function StepSurvey1({ onNext, value, update }: { onNext: () => void, value: str
         <button 
           disabled={!value} 
           onClick={onNext} 
-          className="w-full disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed bg-gradient-to-r from-[#D32F2F] to-[#E65100] text-white text-3xl sm:text-5xl font-black py-4 sm:py-10 rounded-2xl shadow-lg shadow-red-900/20 active:scale-95 transition-transform select-none"
+          className="w-full disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed  bg-[#2E7D32]  text-white text-3xl sm:text-5xl font-black py-4 sm:py-10 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none"
         >
           下一題
         </button>
@@ -260,7 +295,7 @@ function StepSurvey2({ onNext, value, update }: { onNext: () => void, value: str
   
   return (
     <div className="flex-1 flex flex-col bg-white min-h-0 relative">
-      <header className="bg-gradient-to-r from-[#D32F2F] to-[#E65100] p-8 text-white flex flex-col items-center gap-2">
+      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
         <h1 className="text-4xl font-extrabold text-center">問卷 2 / 3</h1>
         <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
           <div className="w-[77%] h-full bg-white"></div>
@@ -281,7 +316,7 @@ function StepSurvey2({ onNext, value, update }: { onNext: () => void, value: str
               onClick={() => update(opt)}
               className={`flex-1 w-full min-h-[60px] text-2xl sm:text-4xl lg:text-5xl font-black rounded-2xl border-4 transition-colors select-none ${
                 value === opt 
-                  ? 'border-[#B71C1C] bg-[#FFF9C4] text-[#D32F2F]' 
+                  ? 'border-[#2E7D32] bg-[#E8F5E9] text-[#2E7D32]' 
                   : 'border-gray-300 bg-white text-gray-700 shadow-sm active:bg-gray-100'
               }`}
             >
@@ -295,7 +330,7 @@ function StepSurvey2({ onNext, value, update }: { onNext: () => void, value: str
         <button 
           disabled={!value} 
           onClick={onNext} 
-          className="w-full disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed bg-gradient-to-r from-[#D32F2F] to-[#E65100] text-white text-3xl sm:text-5xl font-black py-4 sm:py-10 rounded-2xl shadow-lg shadow-red-900/20 active:scale-95 transition-transform select-none"
+          className="w-full disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed  bg-[#2E7D32]  text-white text-3xl sm:text-5xl font-black py-4 sm:py-10 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none"
         >
           下一題
         </button>
@@ -306,60 +341,10 @@ function StepSurvey2({ onNext, value, update }: { onNext: () => void, value: str
 
 function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valueObj: { q3?: string, text?: string }, updateObj: (key: string, val: string) => void }) {
   const options = ['流程順暢', '介面清楚', '需要協助', '其他建議'];
-  
-  const [isRecording, setIsRecording] = useState(false);
-  const recognitionRef = useRef<any>(null);
-
-  useEffect(() => {
-    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-    if (SpeechRecognition) {
-      recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = true;
-      recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = 'zh-TW';
-    }
-  }, []);
-
-  useEffect(() => {
-    if (recognitionRef.current) {
-      recognitionRef.current.onresult = (event: any) => {
-        let finalTranscript = '';
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
-          if (event.results[i].isFinal) {
-            finalTranscript += event.results[i][0].transcript;
-          }
-        }
-        if (finalTranscript) {
-          updateObj('text', (valueObj.text || '') + finalTranscript);
-        }
-      };
-      
-      recognitionRef.current.onerror = () => setIsRecording(false);
-      recognitionRef.current.onend = () => setIsRecording(false);
-    }
-  }, [valueObj.text, updateObj]);
-
-  const toggleRecording = () => {
-    if (!recognitionRef.current) {
-      alert("您的瀏覽器不支援語音輸入功能");
-      return;
-    }
-    if (isRecording) {
-      recognitionRef.current.stop();
-      setIsRecording(false);
-    } else {
-      try {
-        recognitionRef.current.start();
-        setIsRecording(true);
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  };
 
   return (
     <div className="flex-1 flex flex-col bg-white min-h-0 relative">
-      <header className="bg-gradient-to-r from-[#D32F2F] to-[#E65100] p-8 text-white flex flex-col items-center gap-2">
+      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
         <h1 className="text-4xl font-extrabold text-center">問卷 3 / 3</h1>
         <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
           <div className="w-[88%] h-full bg-white"></div>
@@ -380,7 +365,7 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
               onClick={() => updateObj('q3', opt)}
               className={`w-full h-full min-h-0 text-xl sm:text-3xl lg:text-5xl font-black rounded-2xl border-4 transition-colors select-none ${
                 valueObj.q3 === opt 
-                  ? 'border-[#B71C1C] bg-[#FFF9C4] text-[#D32F2F]' 
+                  ? 'border-[#2E7D32] bg-[#E8F5E9] text-[#2E7D32]' 
                   : 'border-gray-300 bg-white text-gray-700 shadow-sm active:bg-gray-100'
               }`}
             >
@@ -394,16 +379,8 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
             placeholder="如果有其他想說的話...(選填)"
             value={valueObj.text || ''}
             onChange={(e) => updateObj('text', e.target.value)}
-            className="flex-1 w-full h-full p-4 sm:p-6 lg:p-8 pr-16 sm:pr-20 border-4 border-gray-300 bg-white rounded-2xl text-xl sm:text-3xl lg:text-4xl focus:border-[#B71C1C] focus:ring-4 focus:ring-[#D32F2F]/20 focus:outline-none transition-all shadow-sm resize-none"
+            className="flex-1 w-full h-full p-4 sm:p-6 lg:p-8 border-4 border-gray-300 bg-white rounded-2xl text-xl sm:text-3xl lg:text-4xl focus:border-[#2E7D32] focus:ring-4 focus:ring-[#2E7D32]/20 focus:outline-none transition-all shadow-sm resize-none"
           />
-          <button
-            onClick={toggleRecording}
-            className={`absolute right-4 bottom-4 p-3 sm:p-4 rounded-full shadow-md transition-all ${
-              isRecording ? 'bg-red-500 text-white animate-pulse shadow-red-500/50 scale-110' : 'bg-gray-100 text-gray-500 border-2 border-gray-300 hover:bg-gray-200 active:scale-95'
-            }`}
-          >
-            <Mic size={32} className="w-6 h-6 sm:w-8 sm:h-8" />
-          </button>
         </div>
       </main>
 
@@ -411,7 +388,7 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
         <button 
           disabled={!valueObj.q3} 
           onClick={onNext} 
-          className="w-full disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed bg-gradient-to-r from-[#D32F2F] to-[#E65100] text-white text-3xl sm:text-5xl font-black py-4 sm:py-10 rounded-2xl shadow-lg shadow-red-900/20 active:scale-95 transition-transform select-none"
+          className="w-full disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed  bg-[#2E7D32]  text-white text-3xl sm:text-5xl font-black py-4 sm:py-10 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none"
         >
           送出問卷
         </button>
@@ -444,7 +421,7 @@ function StepReceipt({ onDone }: { onDone: () => void }) {
 
   return (
     <div className="flex-1 flex flex-col bg-gray-100 min-h-0 relative print:static print:bg-white print:block">
-      <header className="bg-gradient-to-r from-[#D32F2F] to-[#E65100] p-8 text-white flex flex-col items-center gap-2 print:hidden">
+      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2 print:hidden">
         <h1 className="text-4xl font-extrabold text-center">領取收據</h1>
         <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
           <div className="w-full h-full bg-white"></div>
@@ -457,7 +434,7 @@ function StepReceipt({ onDone }: { onDone: () => void }) {
               animate={{ y: [0, -10, 0] }} 
               transition={{ repeat: Infinity, duration: 2 }}
            >
-             <Printer className="text-[#D32F2F] mb-4 w-12 h-12 sm:w-16 sm:h-16" />
+             <Printer className="text-[#2E7D32] mb-4 w-12 h-12 sm:w-16 sm:h-16" />
            </motion.div>
            <h2 className="text-2xl sm:text-4xl font-extrabold text-gray-800">資料處理完成</h2>
          </div>
@@ -484,11 +461,11 @@ function StepReceipt({ onDone }: { onDone: () => void }) {
                
                <div className="text-left pt-6 border-t-4 border-dashed border-gray-200 mt-6 print:mt-4 print:pt-4 print:border-black">
                   <p className="text-lg sm:text-2xl text-gray-500 font-extrabold mb-2 sm:mb-4 uppercase tracking-wider print:text-base print:mb-1 print:text-black">總計金額</p>
-                  <p className="text-4xl sm:text-5xl font-black text-[#D32F2F] print:text-3xl print:text-black">NT$ 0</p>
+                  <p className="text-4xl sm:text-5xl font-black text-[#2E7D32] print:text-3xl print:text-black">NT$ 0</p>
                </div>
 
-               <div className="bg-[#FFF9C4] border-4 border-[#B71C1C] rounded-2xl p-6 sm:p-8 mt-8 sm:mt-10 mb-4 sm:mb-6 print:border-2 print:border-black print:p-4 print:mt-6 print:mb-4 print:bg-transparent">
-                  <p className="text-xl sm:text-2xl font-extrabold text-[#D32F2F] mb-2 sm:mb-4 uppercase tracking-wider print:text-base print:text-black print:mb-1">憑此編號取餐</p>
+               <div className="bg-[#E8F5E9] border-4 border-[#2E7D32] rounded-2xl p-6 sm:p-8 mt-8 sm:mt-10 mb-4 sm:mb-6 print:border-2 print:border-black print:p-4 print:mt-6 print:mb-4 print:bg-transparent">
+                  <p className="text-xl sm:text-2xl font-extrabold text-[#2E7D32] mb-2 sm:mb-4 uppercase tracking-wider print:text-base print:text-black print:mb-1">憑此編號取餐</p>
                   <p className="text-5xl sm:text-6xl leading-none font-black text-gray-900 tracking-wider font-mono print:text-4xl">{serial}</p>
                </div>
 
@@ -544,7 +521,7 @@ export default function Kiosk() {
   };
 
   return (
-    <div className="w-full h-[100dvh] sm:h-full max-w-[1920px] max-h-[1080px] bg-white shadow-2xl sm:rounded-3xl flex flex-col border-0 sm:border-[8px] lg:border-[16px] xl:border-[24px] sm:border-[#B71C1C] relative mx-auto overflow-hidden print:border-none print:shadow-none print:rounded-none print:w-full print:h-auto print:max-w-none print:max-h-none print:static print:block print:overflow-visible print:bg-white">
+    <div className="w-full h-[100dvh] sm:h-full max-w-[1920px] max-h-[1080px] bg-white shadow-2xl sm:rounded-3xl flex flex-col border-0 sm:border-[8px] lg:border-[16px] xl:border-[24px] sm:border-[#2E7D32] relative mx-auto overflow-hidden print:border-none print:shadow-none print:rounded-none print:w-full print:h-auto print:max-w-none print:max-h-none print:static print:block print:overflow-visible print:bg-white">
        <AnimatePresence mode="wait">
           <motion.div
              key={step}
