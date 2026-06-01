@@ -86,7 +86,7 @@ function StepSelectItem({ onNext }: { onNext: () => void }) {
         <div className="flex-1 flex flex-col items-center justify-center min-h-[260px] shrink-0">
           <div className="text-center mb-6 animate-pulse">
             <span className="bg-[#E8F5E9] text-[#2E7D32] px-6 py-3 rounded-full text-2xl font-bold border-4 border-[#2E7D32] inline-flex items-center gap-2 shadow-sm font-black tracking-wider shadow-green-900/20">
-              👇 請點擊下方餐點圖片，點幾次加幾個 👇
+              👇 請點選餐點圖片 👇
             </span>
           </div>
           <div 
