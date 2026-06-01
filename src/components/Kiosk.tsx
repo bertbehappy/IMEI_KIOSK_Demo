@@ -5,10 +5,21 @@ import { StepType, SurveyState } from '../types';
 import fireLionImg from '../assets/images/fire_lion_mascot_1779687620296.png';
 import imeiLogoImg from '../assets/images/imei_logo_1779678454395.png';
 
-function StepWelcome({ onNext }: { onNext: () => void }) {
+function StepWelcome({ onNext, onAdmin }: { onNext: () => void, onAdmin: () => void }) {
+  const [clicks, setClicks] = useState(0);
+
+  const handleTitleClick = () => {
+    if (clicks + 1 >= 5) {
+      onAdmin();
+      setClicks(0);
+    } else {
+      setClicks(c => c + 1);
+    }
+  };
+
   return (
     <div className="flex-1 flex flex-col items-center justify-between p-6 sm:p-8 text-center bg-[#FFF8E7] overflow-y-auto min-h-0 relative">
-      <div className="flex flex-col items-center mt-12 sm:mt-16 shrink-0 w-full z-10">
+      <div className="flex flex-col items-center mt-12 sm:mt-16 shrink-0 w-full z-10" onClick={handleTitleClick}>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-[#1B5E20] leading-snug tracking-widest mb-4">
           歡迎使用
         </h1>
@@ -73,6 +84,11 @@ function StepSelectItem({ onNext }: { onNext: () => void }) {
 
       <main className="flex-1 min-h-0 p-6 sm:p-8 flex flex-col gap-6 sm:gap-8 overflow-y-auto">
         <div className="flex-1 flex flex-col items-center justify-center min-h-[260px] shrink-0">
+          <div className="text-center mb-6 animate-pulse">
+            <span className="bg-[#E8F5E9] text-[#2E7D32] px-6 py-3 rounded-full text-2xl font-bold border-4 border-[#2E7D32] inline-flex items-center gap-2 shadow-sm font-black tracking-wider shadow-green-900/20">
+              👇 請點擊下方餐點圖片，點幾次加幾個 👇
+            </span>
+          </div>
           <div 
             onClick={handleItemClick}
             className={`relative w-56 h-56 sm:w-80 sm:h-80 lg:w-96 lg:h-96 shrink-0 bg-white rounded-3xl flex items-center justify-center border-4 ${quantity > 0 ? 'border-[#2E7D32] bg-[#E8F5E9]' : 'border-gray-300'} p-2 sm:p-4 overflow-hidden shadow-sm cursor-pointer transition-all active:scale-95`}
@@ -373,15 +389,6 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
             </button>
           ))}
         </div>
-
-        <div className="flex-[0.5] sm:flex-[0.8] min-h-[120px] lg:min-h-[220px] mt-4 flex shrink-0 relative">
-          <textarea 
-            placeholder="如果有其他想說的話...(選填)"
-            value={valueObj.text || ''}
-            onChange={(e) => updateObj('text', e.target.value)}
-            className="flex-1 w-full h-full p-4 sm:p-6 lg:p-8 border-4 border-gray-300 bg-white rounded-2xl text-xl sm:text-3xl lg:text-4xl focus:border-[#2E7D32] focus:ring-4 focus:ring-[#2E7D32]/20 focus:outline-none transition-all shadow-sm resize-none"
-          />
-        </div>
       </main>
 
       <footer className="p-4 sm:p-8 bg-gray-50 flex gap-6 shrink-0 border-t-2 border-gray-200/50">
@@ -397,9 +404,26 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
   );
 }
 
-function StepReceipt({ onDone }: { onDone: () => void }) {
+function StepReceipt({ onDone, survey }: { onDone: () => void, survey?: any }) {
   const [serial] = useState(() => 'A' + Math.floor(Math.random() * 100000000).toString().padStart(8, '0'));
   
+  const hasRecorded = useRef(false);
+  useEffect(() => {
+    if (survey && !hasRecorded.current) {
+      hasRecorded.current = true;
+      try {
+        const records = JSON.parse(localStorage.getItem('kiosk_records') || '[]');
+        records.push({
+          timestamp: new Date().toISOString(),
+          ...survey
+        });
+        localStorage.setItem('kiosk_records', JSON.stringify(records));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, [survey]);
+
   useEffect(() => {
     // Automatically trigger print shortly after rendering
     let printTimeout: NodeJS.Timeout;
@@ -496,6 +520,139 @@ function StepReceipt({ onDone }: { onDone: () => void }) {
   );
 }
 
+function StepAdmin({ onClose }: { onClose: () => void }) {
+  const [password, setPassword] = useState('');
+  const [records, setRecords] = useState<any[]>([]);
+  const [auth, setAuth] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [showConfirmClear, setShowConfirmClear] = useState(false);
+
+  useEffect(() => {
+    const raw = localStorage.getItem('kiosk_records');
+    if (raw) {
+      try {
+        setRecords(JSON.parse(raw));
+      } catch (e) {}
+    }
+  }, []);
+
+  if (!auth) {
+    return (
+      <div className="flex-1 bg-white flex flex-col items-center justify-center relative p-8 print:hidden">
+        <button onClick={onClose} className="absolute top-8 right-8 bg-gray-200 p-4 px-6 rounded-xl text-2xl font-bold shadow-sm active:scale-95">返回</button>
+        <h2 className="text-4xl font-extrabold text-[#1B5E20] mb-8">管理員登入</h2>
+        <input 
+          type="password" 
+          placeholder="請輸入密碼 (預設1234)"
+          className="border-4 border-gray-300 rounded-xl p-4 text-2xl mb-6 w-full max-w-sm text-center focus:border-[#2E7D32] focus:ring-4 outline-none"
+          value={password}
+          onChange={e => { setPassword(e.target.value); setErrorMsg(''); }}
+        />
+        {errorMsg && <p className="text-red-500 font-bold mb-4">{errorMsg}</p>}
+        <button 
+          onClick={() => { if(password === '1234') setAuth(true); else setErrorMsg('密碼錯誤'); }}
+          className="bg-[#2E7D32] text-white text-2xl font-bold py-4 px-12 rounded-xl shadow-lg active:scale-95"
+        >
+          登入
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-1 bg-gray-100 flex flex-col min-h-0 relative print:hidden">
+      <header className="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-6 sm:p-8 flex justify-between items-center shrink-0 shadow-md">
+        <h2 className="text-3xl font-bold">問卷統計報表</h2>
+        <div className="flex">
+          {showConfirmClear ? (
+            <div className="flex items-center gap-2 mr-4 bg-gray-800 p-2 rounded-xl border border-gray-700">
+              <span className="text-white font-bold px-2">確定刪除？</span>
+              <button 
+                onClick={() => {
+                  localStorage.removeItem('kiosk_records');
+                  setRecords([]);
+                  setShowConfirmClear(false);
+                }}
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-bold shadow-sm active:scale-95"
+              >
+                是
+              </button>
+              <button 
+                onClick={() => setShowConfirmClear(false)}
+                className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg font-bold shadow-sm active:scale-95"
+              >
+                否
+              </button>
+            </div>
+          ) : (
+            <button 
+              onClick={() => setShowConfirmClear(true)}
+              className="bg-gray-500 hover:bg-gray-600 text-white active:scale-95 transition-all p-3 px-8 rounded-xl font-bold text-xl shadow-sm mr-4"
+            >
+              清除紀錄
+            </button>
+          )}
+          <button 
+            onClick={() => {
+              const csvContent = "data:text/csv;charset=utf-8,\uFEFF" 
+                + "填寫時間,Q1: 接到陌生來電，對方要你操作ATM，下列哪一個是正確作法？,Q2: 過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？,Q3: 今天活動的整體感受如何？\n"
+                + records.map(r => `"${new Date(r.timestamp).toLocaleString()}","${r.q1||''}","${r.q2||''}","${r.q3||''}"`).join("\n");
+              const encodedUri = encodeURI(csvContent);
+              const link = document.createElement("a");
+              link.setAttribute("href", encodedUri);
+              link.setAttribute("download", "survey_report.csv");
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
+            className="bg-blue-500 hover:bg-blue-600 active:scale-95 transition-all p-3 px-8 rounded-xl font-bold text-xl shadow-sm mr-4"
+          >
+            匯出 CSV
+          </button>
+          <button onClick={onClose} className="bg-red-500 hover:bg-red-600 active:scale-95 transition-all p-3 px-8 rounded-xl font-bold text-xl shadow-sm">
+            關閉
+          </button>
+        </div>
+      </header>
+      <main className="flex-1 overflow-auto p-4 sm:p-8">
+        {records.length === 0 ? (
+          <div className="flex flex-col items-center justify-center h-full opacity-50">
+            <CheckCircle2 size={80} className="mb-4 text-gray-400" />
+            <p className="text-2xl text-gray-500 font-bold">目前無問卷資料</p>
+          </div>
+        ) : (
+          <div className="bg-white shadow-lg rounded-2xl overflow-hidden border-2 border-gray-200">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left min-w-[800px]">
+                <thead className="bg-gray-100 text-lg font-bold text-gray-700 border-b-2 border-gray-200">
+                  <tr>
+                    <th className="p-4 sm:p-6 whitespace-nowrap">填寫時間</th>
+                    <th className="p-4 sm:p-6">Q1: 接到陌生來電，對方要你操作ATM，下列哪一個是正確作法？</th>
+                    <th className="p-4 sm:p-6">Q2: 過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？</th>
+                    <th className="p-4 sm:p-6">Q3: 今天活動的整體感受如何？</th>
+                  </tr>
+                </thead>
+                <tbody className="text-lg divide-y divide-gray-100">
+                  {records.map((r, i) => (
+                    <tr key={i} className="hover:bg-gray-50 transition-colors">
+                      <td className="p-4 sm:p-6 whitespace-nowrap text-gray-500 font-medium">
+                        {new Date(r.timestamp).toLocaleString()}
+                      </td>
+                      <td className="p-4 sm:p-6 font-bold text-gray-800">{r.q1 || '-'}</td>
+                      <td className="p-4 sm:p-6 font-bold text-gray-800">{r.q2 || '-'}</td>
+                      <td className="p-4 sm:p-6 font-bold text-gray-800">{r.q3 || '-'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
+
 export default function Kiosk() {
   const [step, setStep] = useState<StepType>(1);
   const [survey, setSurvey] = useState<SurveyState>({});
@@ -507,7 +664,7 @@ export default function Kiosk() {
 
   const renderStep = () => {
     switch (step) {
-      case 1: return <StepWelcome onNext={() => setStep(2)} />;
+      case 1: return <StepWelcome onNext={() => setStep(2)} onAdmin={() => setStep(10)} />;
       case 2: return <StepSelectItem onNext={() => setStep(3)} />;
       case 3: return <StepConfirmOrder onCancel={() => setStep(1)} onNext={() => setStep(4)} />;
       case 4: return <StepPaymentMethod onNext={() => setStep(5)} />;
@@ -515,7 +672,8 @@ export default function Kiosk() {
       case 6: return <StepSurvey1 onNext={() => setStep(7)} value={survey.q1 || ''} update={(val) => setSurvey(s => ({ ...s, q1: val }))} />;
       case 7: return <StepSurvey2 onNext={() => setStep(8)} value={survey.q2 || ''} update={(val) => setSurvey(s => ({ ...s, q2: val }))} />;
       case 8: return <StepSurvey3 onNext={() => setStep(9)} valueObj={survey} updateObj={(k, val) => setSurvey(s => ({ ...s, [k]: val }))} />;
-      case 9: return <StepReceipt onDone={reset} />;
+      case 9: return <StepReceipt onDone={reset} survey={survey} />;
+      case 10: return <StepAdmin onClose={() => setStep(1)} />;
       default: return null;
     }
   };
