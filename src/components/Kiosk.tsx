@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, CreditCard, Banknote, Printer, Mic } from 'lucide-react';
 import { StepType, SurveyState } from '../types';
-import fireLionImg from '../assets/images/lion_solid_white_bg_1780312181935.png';
+import mascotImg from '../assets/images/digital_neighbor_mascot_1783999306408.jpg';
 import imeiLogoImg from '../assets/images/imei_logo_1779678454395.png';
 
 function StepWelcome({ onNext, onAdmin }: { onNext: () => void, onAdmin: () => void }) {
@@ -24,7 +24,7 @@ function StepWelcome({ onNext, onAdmin }: { onNext: () => void, onAdmin: () => v
           歡迎使用
         </h1>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1B5E20] leading-snug tracking-widest mb-12 sm:mb-16 text-center landscape:text-left max-w-[90%] landscape:max-w-full">
-          跟著火獅走萬年 X<br />高齡數位互動體驗
+          數位好鄰居 X<br />高齡數位互動體驗
         </h2>
         
         <button 
@@ -37,8 +37,8 @@ function StepWelcome({ onNext, onAdmin }: { onNext: () => void, onAdmin: () => v
 
       <div className="mt-8 landscape:mt-0 landscape:ml-8 shrink w-full max-w-[400px] landscape:max-w-[45vh] flex justify-center items-center relative z-0">
         <img 
-          src={fireLionImg} 
-          alt="Fire Lion Mascot" 
+          src={mascotImg} 
+          alt="Mascot" 
           referrerPolicy="no-referrer"
           className="w-full h-auto max-h-[40vh] landscape:max-h-[80vh] object-contain mix-blend-multiply"
         />
@@ -95,7 +95,7 @@ function StepSelectItem({ onNext }: { onNext: () => void }) {
           >
             <img 
                src={imeiLogoImg} 
-               alt="義美贊助食品" 
+               alt="活動贈品" 
                referrerPolicy="no-referrer"
                className={`w-full h-full object-contain scale-[1.3] transition-transform ${quantity > 0 ? '' : 'grayscale opacity-80'}`}
             />
@@ -106,7 +106,6 @@ function StepSelectItem({ onNext }: { onNext: () => void }) {
             )}
           </div>
           <div className="mt-4 sm:mt-8 text-center space-y-1 sm:space-y-4">
-            <h2 className="text-3xl sm:text-5xl font-black text-gray-900">義美贊助食品</h2>
             <p className="text-xl sm:text-3xl font-bold text-[#2E7D32]">單價: NT$ 0</p>
           </div>
         </div>
@@ -149,7 +148,7 @@ function StepConfirmOrder({ onCancel, onNext }: { onCancel: () => void, onNext: 
           <h3 className="text-2xl sm:text-4xl font-extrabold text-[#2E7D32] mb-6 sm:mb-8 border-b-4 border-gray-100 pb-4 sm:pb-6 uppercase tracking-wider">購物車明細</h3>
           
           <div className="flex justify-between items-center mb-8 sm:mb-10 text-2xl sm:text-4xl">
-            <span className="font-bold text-gray-900 leading-snug">義美贊助食品</span>
+            <span className="font-bold text-gray-900 leading-snug">活動贈品</span>
             <span className="font-bold text-gray-500">x 1</span>
           </div>
           
@@ -478,7 +477,7 @@ function StepReceipt({ onDone, survey }: { onDone: () => void, survey?: any }) {
                <div className="text-left py-2 sm:py-4 print:py-0">
                   <p className="text-lg sm:text-2xl text-gray-500 font-extrabold mb-2 sm:mb-4 uppercase tracking-wider print:text-base print:mb-1 print:text-black">點餐內容</p>
                   <div className="flex justify-between items-center text-2xl sm:text-4xl font-black text-gray-900 print:text-2xl">
-                     <span>義美贊助食品</span>
+                     <span>活動贈品</span>
                      <span>x 1</span>
                   </div>
                </div>
