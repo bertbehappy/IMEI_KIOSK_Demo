@@ -57,16 +57,31 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
 
   return (
     <div className="flex-1 flex flex-col landscape:flex-row text-center overflow-hidden relative h-full gap-0 landscape:gap-8 max-w-[1920px] mx-auto items-center w-full justify-between landscape:justify-evenly portrait:p-0 p-4 sm:p-6 lg:p-8">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 hidden portrait:block">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="leaf" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M15,30 C15,15 30,15 30,15 C30,30 15,30 15,30 Z M45,60 C45,45 60,45 60,45 C60,60 45,60 45,60 Z" fill="#2E7D32" opacity="0.3"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#leaf)" />
+      {/* Background Artwork (Edge-to-Edge) */}
+      <div className="absolute inset-0 z-0 pointer-events-none hidden portrait:block overflow-hidden bg-[#FFF8E7]">
+        {/* Top organic shape extending down with gradient */}
+        <div className="absolute top-0 left-0 w-full h-[30%] bg-gradient-to-b from-[#A5D6A7]/50 to-transparent"></div>
+        <svg className="absolute top-0 left-0 w-full h-[45%]" preserveAspectRatio="none" viewBox="0 0 100 100">
+          <path d="M0,0 L100,0 L100,70 Q50,110 0,60 Z" fill="#E8F5E9" />
+          <path d="M0,0 L100,0 L100,50 Q60,90 0,40 Z" fill="#C8E6C9" opacity="0.6" />
         </svg>
+        
+        {/* Bottom subtle organic shape */}
+        <svg className="absolute bottom-0 left-0 w-full h-[30%]" preserveAspectRatio="none" viewBox="0 0 100 100">
+          <path d="M0,100 L100,100 L100,40 Q50,0 0,50 Z" fill="#F1F8E9" opacity="0.8" />
+        </svg>
+
+        {/* Subtle leaf pattern across the lower area */}
+        <div className="absolute top-[35%] bottom-0 left-0 w-full opacity-15">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="leaf" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M20,40 C20,20 40,20 40,20 C40,40 20,40 20,40 Z M60,80 C60,60 80,60 80,60 C80,80 60,80 60,80 Z" fill="#2E7D32" opacity="0.4"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#leaf)" />
+          </svg>
+        </div>
       </div>
       
       {/* 彈跳框阻擋 */}
@@ -105,97 +120,166 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
         )}
       </AnimatePresence>
 
-      {/* 視覺區 (導覽機風格大圖) */}
-      <div className="flex-shrink-0 flex flex-col items-center justify-end w-full landscape:w-1/2 portrait:h-[25%] portrait:min-h-[25vh] bg-gradient-to-b from-[#A5D6A7]/30 to-transparent relative z-10" onClick={handleTitleClick}>
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden portrait:block hidden">
-          <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-            <path d="M0,0 L100,0 L100,80 Q50,100 0,80 Z" fill="#E8F5E9" />
-          </svg>
-        </div>
-        <div className="relative flex flex-col items-center w-full justify-end pb-4 sm:pb-6 portrait:pb-[2vh]">
-          <img src={mascotImg} alt="Mascot" className="w-auto h-24 sm:h-32 landscape:h-[40vh] portrait:h-[12vh] object-contain mix-blend-multiply drop-shadow-2xl portrait:mb-[-1rem] landscape:mb-[-40px] relative z-10" />
-          <div className="bg-[#2E7D32] text-white px-4 py-3 sm:px-8 sm:py-4 lg:px-12 lg:py-6 rounded-[2rem] sm:rounded-[3rem] portrait:rounded-3xl shadow-2xl relative z-20 border-4 sm:border-8 border-white/50 backdrop-blur-sm w-[95%] sm:w-auto portrait:w-[90vw] portrait:max-w-2xl">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-widest text-center leading-snug drop-shadow-md m-0 portrait:text-3xl portrait:sm:text-4xl portrait:leading-tight">
-              數位好鄰居 <span className="text-yellow-300 mx-1 sm:mx-2 text-3xl sm:text-4xl lg:text-6xl portrait:text-4xl portrait:sm:text-5xl align-middle">X</span><br className="landscape:hidden" /> 高齡數位互動體驗
-            </h1>
+      {/* Landscape Layout (Fallback for Desktop) */}
+      <div className="hidden landscape:flex flex-1 w-full max-w-[1920px] mx-auto items-center justify-evenly p-8 relative z-10 gap-8">
+        {/* 視覺區 (導覽機風格大圖) */}
+        <div className="flex-shrink-0 flex flex-col items-center justify-end w-1/2 relative z-10" onClick={handleTitleClick}>
+          <div className="relative flex flex-col items-center w-full justify-end pb-6">
+            <img src={mascotImg} alt="Mascot" className="w-auto h-[40vh] object-contain mix-blend-multiply drop-shadow-2xl mb-[-40px] relative z-10" />
+            <div className="bg-[#2E7D32] text-white px-12 py-6 rounded-[3rem] shadow-2xl relative z-20 border-8 border-white/50 backdrop-blur-sm w-auto">
+              <h1 className="text-5xl font-black tracking-widest text-center leading-snug drop-shadow-md m-0">
+                數位好鄰居 <span className="text-yellow-300 mx-2 text-6xl align-middle">X</span><br /> 高齡數位互動體驗
+              </h1>
+            </div>
+          </div>
+          
+          {/* Privacy (Landscape) */}
+          <div className="mt-8 bg-white/80 p-5 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-[95%] max-w-2xl shrink-0 z-10">
+            <h2 className="text-2xl font-black text-[#1B5E20] mb-2">【個人資料蒐集與同意】</h2>
+            <div className="text-lg text-gray-800 leading-snug space-y-2 font-bold">
+              <p>歡迎使用本設備。本公司為提供您數位好鄰居X高齡數位互動體驗之服務，需請您輸入手機號碼。</p>
+              <p><span className="text-[#2E7D32]">蒐集目的：</span> 僅用於發送簡訊通知與本服務相關之驗證。</p>
+              <p><span className="text-[#2E7D32]">個資安全：</span> 我們將嚴格保密，未經您的同意，絕不將您的個資提供給第三方或用於行銷。</p>
+              <p className="text-orange-700 bg-orange-50 p-3 rounded-lg border border-orange-200 mt-4 text-base">
+                💡 點擊「下一步/確認」即表示您已閱讀並同意本公司的［隱私權政策與個資蒐集聲明］。
+              </p>
+            </div>
           </div>
         </div>
-        
-        {/* Privacy (Landscape) */}
-        <div className="mt-4 lg:mt-8 bg-white/80 p-4 lg:p-5 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-[95%] max-w-2xl shrink-0 z-10 hidden landscape:block">
-          <h2 className="text-lg sm:text-xl lg:text-2xl font-black text-[#1B5E20] mb-1 sm:mb-2">【個人資料蒐集與同意】</h2>
-          <div className="text-sm sm:text-base lg:text-lg text-gray-800 leading-snug space-y-1 lg:space-y-2 font-bold">
-            <p>歡迎使用本設備。本公司為提供您數位好鄰居X高齡數位互動體驗之服務，需請您輸入手機號碼。</p>
-            <p><span className="text-[#2E7D32]">蒐集目的：</span> 僅用於發送簡訊通知與本服務相關之驗證。</p>
-            <p><span className="text-[#2E7D32]">個資安全：</span> 我們將嚴格保密，未經您的同意，絕不將您的個資提供給第三方或用於行銷。</p>
-            <p className="text-orange-700 bg-orange-50 p-2 lg:p-3 rounded-lg border border-orange-200 mt-2 lg:mt-4 text-xs sm:text-sm lg:text-base">
-              💡 點擊「下一步/確認」即表示您已閱讀並同意本公司的［隱私權政策與個資蒐集聲明］。
-            </p>
+
+        {/* 互動區 (Landscape) */}
+        <div className="flex flex-col gap-8 flex-1 w-1/2 items-center justify-center max-w-3xl mx-auto min-h-0 relative z-10">
+          <div className="flex flex-col items-center w-full shrink-0 flex-1 justify-center min-h-0">
+            <h3 className="text-4xl font-bold text-gray-800 mb-6">請輸入您的手機號碼</h3>
+            
+            <div className="w-full bg-white border-4 border-[#2E7D32] rounded-2xl h-24 flex items-center justify-center text-6xl font-black tracking-widest text-gray-900 mb-4 relative shadow-inner shrink-0">
+              {phone || <span className="text-gray-300">09...</span>}
+            </div>
+            
+            <div className="h-10 mb-4 shrink-0 flex items-center">
+              {error && <p className="text-red-500 font-bold text-2xl m-0">{error}</p>}
+            </div>
+
+            <div className="grid grid-cols-3 gap-6 w-full flex-1 min-h-0">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
+                <button 
+                  key={num} 
+                  onClick={() => handleKeyPress(num.toString())}
+                  className="bg-white border-b-4 border-gray-300 text-5xl font-black rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full py-6 flex items-center justify-center min-h-[4rem]"
+                >
+                  {num}
+                </button>
+              ))}
+              <button 
+                onClick={() => handleKeyPress('clear')}
+                className="bg-red-50 text-red-600 border-b-4 border-red-200 text-3xl font-black rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full py-6 flex items-center justify-center min-h-[4rem]"
+              >
+                清除
+              </button>
+              <button 
+                onClick={() => handleKeyPress('0')}
+                className="bg-white border-b-4 border-gray-300 text-5xl font-black rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full py-6 flex items-center justify-center min-h-[4rem]"
+              >
+                0
+              </button>
+              <button 
+                onClick={() => handleKeyPress('back')}
+                className="bg-gray-100 text-gray-600 border-b-4 border-gray-300 rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-sm w-full py-6 min-h-[4rem]"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-delete"><path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/><line x1="18" x2="12" y1="9" y2="15"/><line x1="12" x2="18" y1="9" y2="15"/></svg>
+              </button>
+            </div>
+
+            <button 
+              onClick={handleNext} 
+              className="mt-8 w-full bg-[#2E7D32] text-white text-4xl font-black py-8 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest shrink-0"
+            >
+              下一步 / 確認
+            </button>
           </div>
         </div>
       </div>
 
+      {/* Portrait 專用嚴格比例佈局 (1080x1920) */}
+      <div className="landscape:hidden flex flex-col w-full h-full relative z-10 px-6 py-6 justify-between items-center max-w-3xl mx-auto">
+        
+        {/* ① Hero Banner (15%) */}
+        <div className="h-[15%] w-full flex items-end justify-center pb-2">
+           <img src={mascotImg} alt="Mascot" className="h-full object-contain mix-blend-multiply drop-shadow-2xl" onClick={handleTitleClick} />
+        </div>
 
-      {/* 互動區 */}
-      <div className="flex flex-col gap-3 sm:gap-6 landscape:gap-8 flex-1 w-full portrait:w-[90%] landscape:w-1/2 items-center justify-center max-w-3xl portrait:max-w-2xl mx-auto min-h-0 pb-4 portrait:pb-[4vh] relative z-10">
-        {/* Privacy (Portrait) */}
-        <div className="bg-white/80 p-4 sm:p-6 portrait:sm:p-8 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-full shrink-0 landscape:hidden mt-2 sm:mt-4">
-          <h2 className="text-xl sm:text-2xl portrait:text-2xl portrait:sm:text-3xl font-black text-[#1B5E20] mb-2 sm:mb-4">【個人資料蒐集與同意】</h2>
-          <div className="text-base sm:text-lg portrait:text-lg portrait:sm:text-xl text-gray-800 leading-relaxed space-y-2 sm:space-y-3 font-bold">
-            <p>歡迎使用本設備。本公司為提供您數位好鄰居X高齡數位互動體驗之服務，需請您輸入手機號碼。</p>
-            <p><span className="text-[#2E7D32]">蒐集目的：</span> 僅用於發送簡訊通知與本服務相關之驗證。</p>
-            <p><span className="text-[#2E7D32]">個資安全：</span> 我們將嚴格保密，未經您的同意，絕不將您的個資提供給第三方或用於行銷。</p>
-            <p className="text-orange-700 bg-orange-50 p-3 sm:p-4 rounded-lg border border-orange-200 mt-3 sm:mt-4 text-sm sm:text-base portrait:text-base portrait:sm:text-lg">
-              💡 點擊「下一步/確認」即表示您已閱讀並同意本公司的［隱私權政策與個資蒐集聲明］。
-            </p>
+        {/* ② Title Area (10%) */}
+        <div className="h-[10%] w-full flex items-center justify-center">
+          <div className="bg-[#2E7D32] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-3xl shadow-2xl border-4 border-white/50 backdrop-blur-sm w-full">
+            <h1 className="text-3xl sm:text-4xl font-black tracking-widest text-center leading-snug drop-shadow-md m-0">
+              數位好鄰居 <span className="text-yellow-300 mx-2 text-4xl sm:text-5xl align-middle">X</span><br/> 高齡數位互動體驗
+            </h1>
           </div>
         </div>
 
-        {/* Numpad */}
-        <div className="flex flex-col items-center w-full shrink-0 flex-1 justify-center min-h-0">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl portrait:text-3xl portrait:sm:text-4xl font-bold text-gray-800 mb-3 sm:mb-6">請輸入您的手機號碼</h3>
-          
-          <div className="w-full bg-white border-4 border-[#2E7D32] rounded-2xl h-16 sm:h-20 md:h-24 lg:h-24 portrait:h-16 portrait:sm:h-24 flex items-center justify-center text-4xl sm:text-5xl md:text-6xl lg:text-6xl portrait:text-4xl portrait:sm:text-6xl font-black tracking-widest text-gray-900 mb-2 sm:mb-4 relative shadow-inner shrink-0">
+        {/* ③ Privacy Agreement Card (30%) */}
+        <div className="h-[30%] w-full py-3 flex flex-col justify-center">
+          <div className="bg-white/90 w-full h-full p-5 sm:p-6 rounded-[2rem] border-2 border-[#2E7D32]/20 text-left shadow-lg flex flex-col justify-center">
+            <h2 className="text-2xl sm:text-3xl font-black text-[#1B5E20] mb-2">【個人資料蒐集與同意】</h2>
+            <div className="text-lg sm:text-xl text-gray-800 leading-relaxed space-y-2 font-bold overflow-hidden flex-1 flex flex-col justify-center">
+              <p>歡迎使用本設備。本公司為提供您數位好鄰居X高齡數位互動體驗之服務，需請您輸入手機號碼。</p>
+              <p><span className="text-[#2E7D32]">蒐集目的：</span> 僅用於發送簡訊通知與本服務相關之驗證。</p>
+              <p><span className="text-[#2E7D32]">個資安全：</span> 我們將嚴格保密，未經您的同意，絕不將您的個資提供給第三方或用於行銷。</p>
+              <p className="text-orange-700 bg-orange-50 p-3 sm:p-4 rounded-xl border border-orange-200 mt-2">
+                💡 點擊「下一步/確認」即表示您已閱讀並同意本公司的［隱私權政策與個資蒐集聲明］。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* ④ Phone Number Input (10%) */}
+        <div className="h-[10%] w-full flex flex-col items-center justify-center">
+          <div className="w-full bg-white border-4 border-[#2E7D32] rounded-2xl flex-1 flex items-center justify-center text-5xl sm:text-6xl font-black tracking-widest text-gray-900 shadow-inner min-h-[3rem]">
             {phone || <span className="text-gray-300">09...</span>}
           </div>
-          
-          <div className="h-8 sm:h-10 mb-2 sm:mb-4 shrink-0 flex items-center">
-            {error && <p className="text-red-500 font-bold text-lg sm:text-xl lg:text-2xl portrait:text-xl m-0">{error}</p>}
+          <div className="h-8 flex items-center shrink-0">
+            {error && <p className="text-red-500 font-bold text-xl m-0">{error}</p>}
           </div>
+        </div>
 
-          <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 w-full flex-1 min-h-0">
+        {/* ⑤ Numeric Keypad (25%) */}
+        <div className="h-[25%] w-full py-2">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 w-full h-full">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
               <button 
                 key={num} 
                 onClick={() => handleKeyPress(num.toString())}
-                className="bg-white border-b-4 border-gray-300 text-3xl sm:text-4xl md:text-5xl lg:text-5xl portrait:text-4xl portrait:sm:text-5xl font-black rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full py-3 sm:py-4 lg:py-6 flex items-center justify-center min-h-[3rem] portrait:min-h-[4rem]"
+                className="bg-white border-b-4 border-gray-300 text-4xl sm:text-5xl font-black rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full h-full flex items-center justify-center"
               >
                 {num}
               </button>
             ))}
             <button 
               onClick={() => handleKeyPress('clear')}
-              className="bg-red-50 text-red-600 border-b-4 border-red-200 text-xl sm:text-2xl md:text-3xl lg:text-3xl portrait:text-2xl portrait:sm:text-3xl font-black rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full py-3 sm:py-4 lg:py-6 flex items-center justify-center min-h-[3rem] portrait:min-h-[4rem]"
+              className="bg-red-50 text-red-600 border-b-4 border-red-200 text-2xl sm:text-3xl font-black rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full h-full flex items-center justify-center"
             >
               清除
             </button>
             <button 
               onClick={() => handleKeyPress('0')}
-              className="bg-white border-b-4 border-gray-300 text-3xl sm:text-4xl md:text-5xl lg:text-5xl portrait:text-4xl portrait:sm:text-5xl font-black rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full py-3 sm:py-4 lg:py-6 flex items-center justify-center min-h-[3rem] portrait:min-h-[4rem]"
+              className="bg-white border-b-4 border-gray-300 text-4xl sm:text-5xl font-black rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full h-full flex items-center justify-center"
             >
               0
             </button>
             <button 
               onClick={() => handleKeyPress('back')}
-              className="bg-gray-100 text-gray-600 border-b-4 border-gray-300 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-sm w-full py-3 sm:py-4 lg:py-6 min-h-[3rem] portrait:min-h-[4rem]"
+              className="bg-gray-100 text-gray-600 border-b-4 border-gray-300 rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-sm w-full h-full"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-delete w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 portrait:w-10 portrait:h-10"><path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/><line x1="18" x2="12" y1="9" y2="15"/><line x1="12" x2="18" y1="9" y2="15"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-delete"><path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/><line x1="18" x2="12" y1="9" y2="15"/><line x1="12" x2="18" y1="9" y2="15"/></svg>
             </button>
           </div>
+        </div>
 
+        {/* ⑥ Confirm Button (10%) */}
+        <div className="h-[10%] w-full pt-4 pb-2">
           <button 
             onClick={handleNext} 
-            className="mt-4 sm:mt-6 md:mt-8 w-full bg-[#2E7D32] text-white text-3xl sm:text-4xl lg:text-4xl portrait:text-3xl portrait:sm:text-4xl font-black py-5 sm:py-6 lg:py-8 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest shrink-0"
+            className="w-full h-full bg-[#2E7D32] text-white text-3xl sm:text-4xl font-black rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest flex items-center justify-center"
           >
             下一步 / 確認
           </button>
