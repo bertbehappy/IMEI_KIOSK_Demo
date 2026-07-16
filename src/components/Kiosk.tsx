@@ -56,7 +56,18 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
   };
 
   return (
-    <div className="flex-1 flex flex-col landscape:flex-row p-4 sm:p-6 lg:p-8 portrait:p-4 portrait:sm:p-8 text-center bg-[#FFF8E7] overflow-hidden relative h-full gap-3 sm:gap-4 lg:gap-8 max-w-[1920px] mx-auto items-center w-full justify-evenly">
+    <div className="flex-1 flex flex-col landscape:flex-row text-center overflow-hidden relative h-full gap-0 landscape:gap-8 max-w-[1920px] mx-auto items-center w-full justify-between landscape:justify-evenly portrait:p-0 p-4 sm:p-6 lg:p-8">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20 hidden portrait:block">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="leaf" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M15,30 C15,15 30,15 30,15 C30,30 15,30 15,30 Z M45,60 C45,45 60,45 60,45 C60,60 45,60 45,60 Z" fill="#2E7D32" opacity="0.3"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#leaf)" />
+        </svg>
+      </div>
       
       {/* 彈跳框阻擋 */}
       <AnimatePresence>
@@ -95,10 +106,15 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
       </AnimatePresence>
 
       {/* 視覺區 (導覽機風格大圖) */}
-      <div className="flex-shrink-0 flex flex-col items-center justify-center pt-2 landscape:w-1/2 w-full portrait:flex-[0_1_auto] portrait:max-h-[30%]" onClick={handleTitleClick}>
-        <div className="relative flex flex-col items-center w-full h-full justify-end">
-          <img src={mascotImg} alt="Mascot" className="w-auto h-24 sm:h-32 landscape:h-[40vh] portrait:h-auto portrait:max-h-[15vh] object-contain mix-blend-multiply drop-shadow-2xl portrait:mb-[-1rem] landscape:mb-[-40px] relative z-0" />
-          <div className="bg-[#2E7D32] text-white px-4 py-3 sm:px-8 sm:py-4 lg:px-12 lg:py-6 rounded-[2rem] sm:rounded-[3rem] portrait:rounded-3xl shadow-2xl relative z-10 border-4 sm:border-8 border-white/50 backdrop-blur-sm w-[95%] sm:w-auto portrait:w-[90vw] portrait:max-w-2xl">
+      <div className="flex-shrink-0 flex flex-col items-center justify-end w-full landscape:w-1/2 portrait:h-[25%] portrait:min-h-[25vh] bg-gradient-to-b from-[#A5D6A7]/30 to-transparent relative z-10" onClick={handleTitleClick}>
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden portrait:block hidden">
+          <svg className="absolute top-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+            <path d="M0,0 L100,0 L100,80 Q50,100 0,80 Z" fill="#E8F5E9" />
+          </svg>
+        </div>
+        <div className="relative flex flex-col items-center w-full justify-end pb-4 sm:pb-6 portrait:pb-[2vh]">
+          <img src={mascotImg} alt="Mascot" className="w-auto h-24 sm:h-32 landscape:h-[40vh] portrait:h-[12vh] object-contain mix-blend-multiply drop-shadow-2xl portrait:mb-[-1rem] landscape:mb-[-40px] relative z-10" />
+          <div className="bg-[#2E7D32] text-white px-4 py-3 sm:px-8 sm:py-4 lg:px-12 lg:py-6 rounded-[2rem] sm:rounded-[3rem] portrait:rounded-3xl shadow-2xl relative z-20 border-4 sm:border-8 border-white/50 backdrop-blur-sm w-[95%] sm:w-auto portrait:w-[90vw] portrait:max-w-2xl">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-widest text-center leading-snug drop-shadow-md m-0 portrait:text-3xl portrait:sm:text-4xl portrait:leading-tight">
               數位好鄰居 <span className="text-yellow-300 mx-1 sm:mx-2 text-3xl sm:text-4xl lg:text-6xl portrait:text-4xl portrait:sm:text-5xl align-middle">X</span><br className="landscape:hidden" /> 高齡數位互動體驗
             </h1>
@@ -121,7 +137,7 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
 
 
       {/* 互動區 */}
-      <div className="flex flex-col gap-3 sm:gap-6 landscape:gap-8 flex-1 w-full landscape:w-1/2 items-center justify-center max-w-3xl portrait:max-w-2xl mx-auto min-h-0 pb-2">
+      <div className="flex flex-col gap-3 sm:gap-6 landscape:gap-8 flex-1 w-full portrait:w-[90%] landscape:w-1/2 items-center justify-center max-w-3xl portrait:max-w-2xl mx-auto min-h-0 pb-4 portrait:pb-[4vh] relative z-10">
         {/* Privacy (Portrait) */}
         <div className="bg-white/80 p-4 sm:p-6 portrait:sm:p-8 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-full shrink-0 landscape:hidden mt-2 sm:mt-4">
           <h2 className="text-xl sm:text-2xl portrait:text-2xl portrait:sm:text-3xl font-black text-[#1B5E20] mb-2 sm:mb-4">【個人資料蒐集與同意】</h2>
