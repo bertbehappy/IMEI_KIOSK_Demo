@@ -56,7 +56,7 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
   };
 
   return (
-    <div className="flex-1 flex flex-col landscape:flex-row p-4 sm:p-6 lg:p-8 text-center bg-[#FFF8E7] overflow-y-auto relative h-full gap-2 sm:gap-4 lg:gap-8 max-w-[1920px] mx-auto items-center w-full justify-evenly">
+    <div className="flex-1 flex flex-col landscape:flex-row p-4 sm:p-6 lg:p-8 text-center bg-[#FFF8E7] overflow-hidden relative h-full gap-2 sm:gap-4 lg:gap-8 max-w-[1920px] mx-auto items-center w-full justify-evenly">
       
       {/* 彈跳框阻擋 */}
       <AnimatePresence>
@@ -146,31 +146,31 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
             {error && <p className="text-red-500 font-bold text-base sm:text-lg lg:text-xl m-0">{error}</p>}
           </div>
 
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6 w-full shrink min-h-0">
+          <div className="grid grid-cols-3 grid-rows-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 w-full flex-1 min-h-0 shrink">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
               <button 
                 key={num} 
                 onClick={() => handleKeyPress(num.toString())}
-                className="bg-white border-b-4 border-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black py-2 sm:py-3 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm min-h-[3rem]"
+                className="bg-white border-b-4 border-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full h-full flex items-center justify-center min-h-0"
               >
                 {num}
               </button>
             ))}
             <button 
               onClick={() => handleKeyPress('clear')}
-              className="bg-red-50 text-red-600 border-b-4 border-red-200 text-lg sm:text-xl md:text-2xl lg:text-3xl font-black py-2 sm:py-3 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm min-h-[3rem]"
+              className="bg-red-50 text-red-600 border-b-4 border-red-200 text-lg sm:text-xl md:text-2xl lg:text-3xl font-black rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full h-full flex items-center justify-center min-h-0"
             >
               清除
             </button>
             <button 
               onClick={() => handleKeyPress('0')}
-              className="bg-white border-b-4 border-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black py-2 sm:py-3 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm min-h-[3rem]"
+              className="bg-white border-b-4 border-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm w-full h-full flex items-center justify-center min-h-0"
             >
               0
             </button>
             <button 
               onClick={() => handleKeyPress('back')}
-              className="bg-gray-100 text-gray-600 border-b-4 border-gray-300 py-2 sm:py-3 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-sm min-h-[3rem]"
+              className="bg-gray-100 text-gray-600 border-b-4 border-gray-300 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-sm w-full h-full min-h-0"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-delete lg:w-8 lg:h-8"><path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/><line x1="18" x2="12" y1="9" y2="15"/><line x1="12" x2="18" y1="9" y2="15"/></svg>
             </button>
@@ -178,7 +178,7 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
 
           <button 
             onClick={handleNext} 
-            className="mt-3 sm:mt-4 md:mt-6 w-full bg-[#2E7D32] text-white text-2xl sm:text-3xl lg:text-4xl font-black py-3 sm:py-4 lg:py-6 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest shrink-0"
+            className="mt-3 sm:mt-4 md:mt-6 w-full bg-[#2E7D32] text-white text-2xl sm:text-3xl lg:text-4xl font-black py-4 lg:py-6 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest shrink-0"
           >
             下一步 / 確認
           </button>
