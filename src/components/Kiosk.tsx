@@ -56,7 +56,7 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
   };
 
   return (
-    <div className="flex-1 flex flex-col landscape:flex-row p-4 sm:p-6 md:p-8 text-center bg-[#FFF8E7] overflow-y-auto relative h-full gap-6 sm:gap-8 max-w-[1920px] mx-auto items-center w-full">
+    <div className="flex-1 flex flex-col landscape:flex-row p-4 sm:p-6 lg:p-8 text-center bg-[#FFF8E7] overflow-y-auto relative h-full gap-2 sm:gap-4 lg:gap-8 max-w-[1920px] mx-auto items-center w-full justify-evenly">
       
       {/* 彈跳框阻擋 */}
       <AnimatePresence>
@@ -95,18 +95,18 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
       </AnimatePresence>
 
       {/* 視覺區 (導覽機風格大圖) */}
-      <div className="flex-shrink-0 flex flex-col items-center justify-center pt-2 landscape:w-1/2 w-full" onClick={handleTitleClick}>
+      <div className="flex-shrink-0 flex flex-col items-center justify-center pt-2 landscape:w-1/2 w-full max-h-[35%]" onClick={handleTitleClick}>
         <div className="relative flex flex-col items-center w-full">
-          <img src={mascotImg} alt="Mascot" className="w-48 h-48 sm:w-64 sm:h-64 portrait:md:w-80 portrait:md:h-80 landscape:w-80 landscape:h-80 landscape:xl:w-[36rem] landscape:xl:h-[36rem] object-contain mix-blend-multiply drop-shadow-2xl portrait:mb-[-20px] landscape:mb-[-40px] relative z-0" />
-          <div className="bg-[#2E7D32] text-white px-6 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 rounded-[2rem] sm:rounded-[3rem] shadow-2xl relative z-10 border-8 border-white/50 backdrop-blur-sm w-[95%] sm:w-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-widest text-center leading-snug drop-shadow-md m-0">
-              數位好鄰居 <span className="text-yellow-300 mx-1 sm:mx-2 text-4xl sm:text-5xl lg:text-7xl align-middle">X</span><br className="landscape:hidden" /> 高齡數位互動體驗
+          <img src={mascotImg} alt="Mascot" className="w-48 h-48 sm:w-56 sm:h-56 portrait:md:w-72 portrait:md:h-72 landscape:w-80 landscape:h-80 landscape:xl:w-[36rem] landscape:xl:h-[36rem] object-contain mix-blend-multiply drop-shadow-2xl portrait:mb-[-20px] landscape:mb-[-40px] relative z-0" />
+          <div className="bg-[#2E7D32] text-white px-4 py-3 sm:px-8 sm:py-4 lg:px-12 lg:py-6 rounded-[2rem] sm:rounded-[3rem] shadow-2xl relative z-10 border-4 sm:border-8 border-white/50 backdrop-blur-sm w-[95%] sm:w-auto">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-widest text-center leading-snug drop-shadow-md m-0">
+              數位好鄰居 <span className="text-yellow-300 mx-1 sm:mx-2 text-3xl sm:text-4xl lg:text-7xl align-middle">X</span><br className="landscape:hidden" /> 高齡數位互動體驗
             </h1>
           </div>
         </div>
         
         {/* Privacy */}
-        <div className="mt-8 bg-white/80 p-4 lg:p-5 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-[95%] max-w-2xl shrink-0 z-10 hidden landscape:block">
+        <div className="mt-4 lg:mt-8 bg-white/80 p-4 lg:p-5 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-[95%] max-w-2xl shrink-0 z-10 hidden landscape:block">
           <h2 className="text-lg sm:text-xl lg:text-2xl font-black text-[#1B5E20] mb-1 sm:mb-2">【個人資料蒐集與同意】</h2>
           <div className="text-sm sm:text-base lg:text-lg text-gray-800 leading-snug space-y-1 lg:space-y-2 font-bold">
             <p>歡迎使用本設備。本公司為提供您數位好鄰居X高齡數位互動體驗之服務，需請您輸入手機號碼。</p>
@@ -120,9 +120,9 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
       </div>
 
       {/* 互動區 */}
-      <div className="flex flex-col gap-4 sm:gap-6 landscape:gap-8 flex-1 w-full landscape:w-1/2 items-center justify-center max-w-3xl mx-auto h-full pb-4">
+      <div className="flex flex-col gap-2 sm:gap-4 landscape:gap-8 flex-1 w-full landscape:w-1/2 items-center justify-center max-w-3xl mx-auto min-h-0 pb-2">
         {/* Privacy (Portrait) */}
-        <div className="bg-white/80 p-3 sm:p-4 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-[95%] max-w-2xl shrink-0 landscape:hidden mt-4">
+        <div className="bg-white/80 p-3 sm:p-4 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-[95%] max-w-2xl shrink-0 landscape:hidden mt-2 sm:mt-4">
           <h2 className="text-lg sm:text-xl font-black text-[#1B5E20] mb-1 sm:mb-2">【個人資料蒐集與同意】</h2>
           <div className="text-sm sm:text-base text-gray-800 leading-snug space-y-1 font-bold">
             <p>歡迎使用本設備。本公司為提供您數位好鄰居X高齡數位互動體驗之服務，需請您輸入手機號碼。</p>
@@ -135,42 +135,42 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
         </div>
 
         {/* Numpad */}
-        <div className="flex flex-col items-center w-full max-w-md shrink-0">
-          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 lg:mb-6">請輸入您的手機號碼</h3>
+        <div className="flex flex-col items-center w-full max-w-md shrink-0 flex-1 justify-center min-h-0">
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-2 sm:mb-4 lg:mb-6">請輸入您的手機號碼</h3>
           
-          <div className="w-full bg-white border-4 border-[#2E7D32] rounded-2xl h-14 sm:h-16 md:h-20 lg:h-24 flex items-center justify-center text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-widest text-gray-900 mb-2 relative shadow-inner">
+          <div className="w-full bg-white border-4 border-[#2E7D32] rounded-2xl h-14 sm:h-16 md:h-20 lg:h-24 flex items-center justify-center text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-widest text-gray-900 mb-1 sm:mb-2 relative shadow-inner shrink-0">
             {phone || <span className="text-gray-300">09...</span>}
           </div>
           
-          <div className="h-6 sm:h-8 mb-2 sm:mb-4">
-            {error && <p className="text-red-500 font-bold text-base sm:text-lg lg:text-xl">{error}</p>}
+          <div className="h-6 sm:h-8 mb-1 sm:mb-4 shrink-0 flex items-center">
+            {error && <p className="text-red-500 font-bold text-base sm:text-lg lg:text-xl m-0">{error}</p>}
           </div>
 
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6 w-full shrink-0">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 lg:gap-6 w-full shrink min-h-0">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
               <button 
                 key={num} 
                 onClick={() => handleKeyPress(num.toString())}
-                className="bg-white border-b-4 border-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black py-3 sm:py-4 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm"
+                className="bg-white border-b-4 border-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black py-2 sm:py-3 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm min-h-[3rem]"
               >
                 {num}
               </button>
             ))}
             <button 
               onClick={() => handleKeyPress('clear')}
-              className="bg-red-50 text-red-600 border-b-4 border-red-200 text-lg sm:text-xl md:text-2xl lg:text-3xl font-black py-3 sm:py-4 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm"
+              className="bg-red-50 text-red-600 border-b-4 border-red-200 text-lg sm:text-xl md:text-2xl lg:text-3xl font-black py-2 sm:py-3 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm min-h-[3rem]"
             >
               清除
             </button>
             <button 
               onClick={() => handleKeyPress('0')}
-              className="bg-white border-b-4 border-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black py-3 sm:py-4 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm"
+              className="bg-white border-b-4 border-gray-300 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black py-2 sm:py-3 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all shadow-sm min-h-[3rem]"
             >
               0
             </button>
             <button 
               onClick={() => handleKeyPress('back')}
-              className="bg-gray-100 text-gray-600 border-b-4 border-gray-300 py-3 sm:py-4 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-sm"
+              className="bg-gray-100 text-gray-600 border-b-4 border-gray-300 py-2 sm:py-3 lg:py-5 rounded-xl sm:rounded-2xl active:scale-95 active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-sm min-h-[3rem]"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-delete lg:w-8 lg:h-8"><path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z"/><line x1="18" x2="12" y1="9" y2="15"/><line x1="12" x2="18" y1="9" y2="15"/></svg>
             </button>
@@ -178,7 +178,7 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
 
           <button 
             onClick={handleNext} 
-            className="mt-4 sm:mt-6 md:mt-8 w-full bg-[#2E7D32] text-white text-2xl sm:text-3xl lg:text-4xl font-black py-4 sm:py-5 lg:py-6 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest"
+            className="mt-3 sm:mt-4 md:mt-6 w-full bg-[#2E7D32] text-white text-2xl sm:text-3xl lg:text-4xl font-black py-3 sm:py-4 lg:py-6 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest shrink-0"
           >
             下一步 / 確認
           </button>
