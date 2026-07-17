@@ -722,32 +722,32 @@ function StepReceipt({ onDone, survey }: { onDone: () => void, survey?: any }) {
            initial={{ y: -80, opacity: 0 }} 
            animate={{ y: 0, opacity: 1 }} 
            transition={{ delay: 0.3, duration: 0.8, type: 'spring' }}
-           className="w-full max-w-[420px] bg-white p-6 sm:p-8 landscape:p-6 shadow-xl rounded-sm relative border-t-8 border-gray-400 shrink-0 print:border-none print:shadow-none print:p-[2mm] print:m-0 print:w-full print:max-w-none print:static"
+           className="w-full max-w-[420px] bg-white p-6 sm:p-8 landscape:p-6 shadow-xl rounded-sm relative border-t-8 border-gray-400 shrink-0 print:border-none print:shadow-none print:p-0 print:m-0 print:w-full print:max-w-none print:static"
          >
             <div className="absolute top-0 left-0 w-full border-t-8 border-dashed border-gray-300 -mt-2 print:hidden"></div>
             
-            <div className="text-center mt-2 sm:mt-4 landscape:mt-2 print:mt-0">
-               <h3 className="text-3xl sm:text-5xl landscape:text-3xl font-black text-gray-900 tracking-widest border-b-4 border-gray-100 pb-6 sm:pb-8 mb-6 sm:mb-8 landscape:pb-4 landscape:mb-4 print:border-b-2 print:pb-4 print:mb-4">取餐收據</h3>
+            <div className="text-center mt-2 sm:mt-4 landscape:mt-2 print:mt-0 print:text-black">
+               <h3 className="text-3xl sm:text-5xl landscape:text-3xl font-black text-gray-900 tracking-widest border-b-4 border-gray-100 pb-6 sm:pb-8 mb-6 sm:mb-8 landscape:pb-4 landscape:mb-4 print:border-b-2 print:pb-2 print:mb-2 print:text-2xl print:tracking-normal print:border-black">取餐收據</h3>
                
-               <div className="text-left py-2 sm:py-4 print:py-0">
-                  <p className="text-lg sm:text-2xl text-gray-500 font-extrabold mb-2 sm:mb-4 uppercase tracking-wider print:text-base print:mb-1 print:text-black">點餐內容</p>
-                  <div className="flex justify-between items-center text-2xl sm:text-4xl font-black text-gray-900 print:text-2xl">
+               <div className="text-left py-2 sm:py-4 print:py-1">
+                  <p className="text-lg sm:text-2xl text-gray-500 font-extrabold mb-2 sm:mb-4 uppercase tracking-wider print:text-sm print:mb-1 print:text-black print:tracking-normal">點餐內容</p>
+                  <div className="flex justify-between items-center text-2xl sm:text-4xl font-black text-gray-900 print:text-lg">
                      <span>活動贈品</span>
                      <span>x 1</span>
                   </div>
                </div>
                
-               <div className="text-left pt-6 border-t-4 border-dashed border-gray-200 mt-6 print:mt-4 print:pt-4 print:border-black">
-                  <p className="text-lg sm:text-2xl text-gray-500 font-extrabold mb-2 sm:mb-4 uppercase tracking-wider print:text-base print:mb-1 print:text-black">總計金額</p>
-                  <p className="text-4xl sm:text-5xl font-black text-[#2E7D32] print:text-3xl print:text-black">NT$ 0</p>
+               <div className="text-left pt-6 border-t-4 border-dashed border-gray-200 mt-6 print:mt-2 print:pt-2 print:border-t-2 print:border-black">
+                  <p className="text-lg sm:text-2xl text-gray-500 font-extrabold mb-2 sm:mb-4 uppercase tracking-wider print:text-sm print:mb-1 print:text-black print:tracking-normal">總計金額</p>
+                  <p className="text-4xl sm:text-5xl font-black text-[#2E7D32] print:text-xl print:text-black">NT$ 0</p>
                </div>
 
-               <div className="bg-[#E8F5E9] border-4 border-[#2E7D32] rounded-2xl p-6 sm:p-8 mt-8 sm:mt-10 mb-4 sm:mb-6 print:border-2 print:border-black print:p-4 print:mt-6 print:mb-4 print:bg-transparent">
-                  <p className="text-xl sm:text-2xl font-extrabold text-[#2E7D32] mb-2 sm:mb-4 uppercase tracking-wider print:text-base print:text-black print:mb-1">憑此編號取餐</p>
-                  <p className="text-5xl sm:text-6xl leading-none font-black text-gray-900 tracking-wider font-mono print:text-4xl">{serial}</p>
+               <div className="bg-[#E8F5E9] border-4 border-[#2E7D32] rounded-2xl p-6 sm:p-8 mt-8 sm:mt-10 mb-4 sm:mb-6 print:border-2 print:border-black print:p-2 print:mt-4 print:mb-2 print:bg-transparent print:rounded-none">
+                  <p className="text-xl sm:text-2xl font-extrabold text-[#2E7D32] mb-2 sm:mb-4 uppercase tracking-wider print:text-sm print:text-black print:mb-1 print:tracking-normal">憑此編號取餐</p>
+                  <p className="text-5xl sm:text-6xl leading-none font-black text-gray-900 tracking-wider font-mono print:text-3xl print:tracking-normal">{serial}</p>
                </div>
 
-               <p className="text-lg sm:text-xl text-gray-400 font-extrabold pt-4 border-t-4 border-dashed border-gray-200 print:text-base print:text-black print:border-black">
+               <p className="text-lg sm:text-xl text-gray-400 font-extrabold pt-4 border-t-4 border-dashed border-gray-200 print:text-xs print:text-black print:border-black print:border-t-2 print:pt-1 print:pb-0 print:mb-0">
                   {new Date().toLocaleString('zh-TW', { hour12: false })}
                </p>
             </div>
