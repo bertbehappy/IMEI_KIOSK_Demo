@@ -659,7 +659,7 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
 }
 
 function StepReceipt({ onDone, survey }: { onDone: () => void, survey?: any }) {
-  const [serial] = useState(() => 'A' + Math.floor(Math.random() * 100000000).toString().padStart(8, '0'));
+  const [serial] = useState(() => (Math.floor(Math.random() * 9000) + 1000).toString());
   
   const hasRecorded = useRef(false);
   useEffect(() => {
@@ -759,13 +759,6 @@ function StepReceipt({ onDone, survey }: { onDone: () => void, survey?: any }) {
            transition={{ delay: 1.5 }}
            className="mt-8 sm:mt-12 text-2xl sm:text-3xl font-extrabold text-gray-500 text-center leading-relaxed shrink-0 pb-4 print:hidden"
          >
-            <button 
-               onClick={() => window.print()}
-               className="mb-4 bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-xl shadow-sm text-2xl active:scale-95 transition-all"
-            >
-               🖨️ 點此列印收據
-            </button>
-            <br/>
             請拿取下方印出的收據<br/>
             <span className="text-xl sm:text-2xl mt-2 inline-block opacity-80">(畫面將在 8 秒後自動返回)</span>
          </motion.p>

@@ -4,11 +4,11 @@
 @media print {
   @page {
     margin: 0;
-    size: 80mm auto;
+    size: 58mm auto;
   }
   
   body {
-    width: 80mm;
+    width: 58mm;
     margin: 0;
     padding: 0;
     background: white;
