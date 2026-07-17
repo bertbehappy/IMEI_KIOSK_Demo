@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, CreditCard, Banknote, Printer, Mic } from 'lucide-react';
 import { StepType, SurveyState } from '../types';
-import mascotImg from '../assets/images/digital_neighbor_mascot_1783999306408.jpg';
+import mascotImg from '../assets/images/hero_banner_1784250790825.jpg';
 import imeiLogoImg from '../assets/images/imei_logo_1779678454395.png';
 
 function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => void, onAdmin: () => void, survey: SurveyState, updateSurvey: (phone: string) => void }) {
@@ -57,26 +57,26 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
 
   return (
     <div className="flex-1 flex flex-col landscape:flex-row text-center overflow-hidden relative h-full gap-0 landscape:gap-8 max-w-[1920px] mx-auto items-center w-full justify-between landscape:justify-evenly portrait:p-0 p-4 sm:p-6 lg:p-8">
-      {/* Background Artwork (Edge-to-Edge) */}
+      {/* Background Artwork (Edge-to-Edge with Bleed) */}
       <div className="absolute inset-0 z-0 pointer-events-none hidden portrait:block overflow-hidden bg-[#FFF8E7]">
         {/* Top organic shape extending down with gradient */}
-        <div className="absolute top-0 left-0 w-full h-[30%] bg-gradient-to-b from-[#A5D6A7]/50 to-transparent"></div>
-        <svg className="absolute top-0 left-0 w-full h-[45%]" preserveAspectRatio="none" viewBox="0 0 100 100">
+        <div className="absolute -top-[5%] -left-[5%] w-[110%] h-[35%] bg-gradient-to-b from-[#A5D6A7]/50 to-transparent"></div>
+        <svg className="absolute -top-[5%] -left-[5%] w-[110%] h-[55%]" preserveAspectRatio="none" viewBox="0 0 100 100">
           <path d="M0,0 L100,0 L100,70 Q50,110 0,60 Z" fill="#E8F5E9" />
           <path d="M0,0 L100,0 L100,50 Q60,90 0,40 Z" fill="#C8E6C9" opacity="0.6" />
         </svg>
         
         {/* Bottom subtle organic shape */}
-        <svg className="absolute bottom-0 left-0 w-full h-[30%]" preserveAspectRatio="none" viewBox="0 0 100 100">
+        <svg className="absolute -bottom-[5%] -left-[5%] w-[110%] h-[40%]" preserveAspectRatio="none" viewBox="0 0 100 100">
           <path d="M0,100 L100,100 L100,40 Q50,0 0,50 Z" fill="#F1F8E9" opacity="0.8" />
         </svg>
 
         {/* Subtle leaf pattern across the lower area */}
-        <div className="absolute top-[35%] bottom-0 left-0 w-full opacity-15">
+        <div className="absolute top-[30%] -bottom-[5%] -left-[5%] w-[110%] opacity-15">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern id="leaf" width="80" height="80" patternUnits="userSpaceOnUse">
-                <path d="M20,40 C20,20 40,20 40,20 C40,40 20,40 20,40 Z M60,80 C60,60 80,60 80,60 C80,80 60,80 60,80 Z" fill="#2E7D32" opacity="0.4"/>
+              <pattern id="leaf" width="100" height="100" patternUnits="userSpaceOnUse" patternTransform="rotate(15)">
+                <path d="M25,50 C25,25 50,25 50,25 C50,50 25,50 25,50 Z M75,100 C75,75 100,75 100,75 C100,100 75,100 75,100 Z" fill="#2E7D32" opacity="0.4"/>
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#leaf)" />
@@ -126,22 +126,24 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
         <div className="flex-shrink-0 flex flex-col items-center justify-end w-1/2 relative z-10" onClick={handleTitleClick}>
           <div className="relative flex flex-col items-center w-full justify-end pb-6">
             <img src={mascotImg} alt="Mascot" className="w-auto h-[40vh] object-contain mix-blend-multiply drop-shadow-2xl mb-[-40px] relative z-10" />
-            <div className="bg-[#2E7D32] text-white px-12 py-6 rounded-[3rem] shadow-2xl relative z-20 border-8 border-white/50 backdrop-blur-sm w-auto">
-              <h1 className="text-5xl font-black tracking-widest text-center leading-snug drop-shadow-md m-0">
-                數位好鄰居 <span className="text-yellow-300 mx-2 text-6xl align-middle">X</span><br /> 高齡數位互動體驗
+            <div className="bg-[#2E7D32] text-white px-6 xl:px-12 py-6 rounded-[3rem] shadow-2xl relative z-20 border-8 border-white/50 backdrop-blur-sm w-full flex items-center justify-center">
+              <h1 className="text-[32px] lg:text-[42px] xl:text-[54px] font-black tracking-wide text-center leading-snug drop-shadow-md m-0 whitespace-nowrap w-full flex justify-between items-center">
+                <span>數位好鄰居</span>
+                <span className="text-yellow-300 mx-2 text-[1.2em] align-middle">X</span>
+                <span>高齡數位互動體驗</span>
               </h1>
             </div>
           </div>
           
           {/* Privacy (Landscape) */}
-          <div className="mt-8 bg-white/80 p-5 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-[95%] max-w-2xl shrink-0 z-10">
+          <div className="mt-8 bg-white/80 p-5 rounded-2xl border-2 border-[#2E7D32]/20 text-left shadow-sm w-[95%] max-w-4xl shrink-0 z-10">
             <h2 className="text-2xl font-black text-[#1B5E20] mb-2">【個人資料蒐集與同意】</h2>
-            <div className="text-lg text-gray-800 leading-snug space-y-2 font-bold">
+            <div className="text-lg xl:text-xl text-gray-800 leading-snug space-y-2 font-bold tracking-tight">
               <p>歡迎使用本設備。本公司為提供您數位好鄰居X高齡數位互動體驗之服務，需請您輸入手機號碼。</p>
               <p><span className="text-[#2E7D32]">蒐集目的：</span> 僅用於發送簡訊通知與本服務相關之驗證。</p>
               <p><span className="text-[#2E7D32]">個資安全：</span> 我們將嚴格保密，未經您的同意，絕不將您的個資提供給第三方或用於行銷。</p>
-              <p className="text-orange-700 bg-orange-50 p-3 rounded-lg border border-orange-200 mt-4 text-base">
-                💡 點擊「下一步/確認」即表示您已閱讀並同意本公司的［隱私權政策與個資蒐集聲明］。
+              <p className="text-orange-700 bg-orange-50 p-3 rounded-lg border border-orange-200 mt-4 text-base xl:text-lg">
+                點擊「下一步/確認」即表示您已閱讀並同意本公司的［隱私權政策與個資蒐集聲明］。
               </p>
             </div>
           </div>
@@ -192,7 +194,7 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
 
             <button 
               onClick={handleNext} 
-              className="mt-8 w-full bg-[#2E7D32] text-white text-4xl font-black py-8 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest shrink-0"
+              className="mt-[42px] w-full bg-[#2E7D32] text-white text-4xl font-black py-8 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest shrink-0"
             >
               下一步 / 確認
             </button>
@@ -201,32 +203,34 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
       </div>
 
       {/* Portrait 專用嚴格比例佈局 (1080x1920) */}
-      <div className="landscape:hidden flex flex-col w-full h-full relative z-10 px-6 py-6 justify-between items-center max-w-3xl mx-auto">
+      <div className="landscape:hidden flex flex-col w-full h-full relative z-10 px-6 py-6 justify-between items-center max-w-[960px] mx-auto">
         
-        {/* ① Hero Banner (15%) */}
-        <div className="h-[15%] w-full flex items-end justify-center pb-2">
-           <img src={mascotImg} alt="Mascot" className="h-full object-contain mix-blend-multiply drop-shadow-2xl" onClick={handleTitleClick} />
+        {/* ① Hero Banner (14%) */}
+        <div className="h-[14%] w-full flex items-end justify-center pb-2">
+           <img src={mascotImg} alt="Mascot" className="w-full h-full object-cover rounded-3xl mix-blend-multiply shadow-lg" onClick={handleTitleClick} />
         </div>
 
-        {/* ② Title Area (10%) */}
-        <div className="h-[10%] w-full flex items-center justify-center">
-          <div className="bg-[#2E7D32] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-3xl shadow-2xl border-4 border-white/50 backdrop-blur-sm w-full">
-            <h1 className="text-3xl sm:text-4xl font-black tracking-widest text-center leading-snug drop-shadow-md m-0">
-              數位好鄰居 <span className="text-yellow-300 mx-2 text-4xl sm:text-5xl align-middle">X</span><br/> 高齡數位互動體驗
+        {/* ② Title Area (9%) */}
+        <div className="h-[9%] w-full flex items-center justify-center">
+          <div className="bg-[#2E7D32] text-white px-4 sm:px-6 py-4 sm:py-6 rounded-3xl shadow-2xl border-4 border-white/50 backdrop-blur-sm w-full overflow-hidden flex items-center justify-center h-full">
+            <h1 className="text-[5.5vw] sm:text-[34px] md:text-[44px] lg:text-[52px] font-black tracking-wide text-center leading-snug drop-shadow-md m-0 whitespace-nowrap w-full flex justify-between items-center">
+              <span>數位好鄰居</span>
+              <span className="text-yellow-300 mx-1 text-[1.2em] align-middle">X</span>
+              <span>高齡數位互動體驗</span>
             </h1>
           </div>
         </div>
 
-        {/* ③ Privacy Agreement Card (30%) */}
-        <div className="h-[30%] w-full py-3 flex flex-col justify-center">
-          <div className="bg-white/90 w-full h-full p-5 sm:p-6 rounded-[2rem] border-2 border-[#2E7D32]/20 text-left shadow-lg flex flex-col justify-center">
-            <h2 className="text-2xl sm:text-3xl font-black text-[#1B5E20] mb-2">【個人資料蒐集與同意】</h2>
-            <div className="text-lg sm:text-xl text-gray-800 leading-relaxed space-y-2 font-bold overflow-hidden flex-1 flex flex-col justify-center">
+        {/* ③ Privacy Agreement Card (32%) */}
+        <div className="h-[32%] w-full py-2 flex flex-col justify-center">
+          <div className="bg-white/90 w-[98%] mx-auto h-full p-4 sm:p-6 lg:p-8 rounded-[2rem] border-2 border-[#2E7D32] text-left shadow-lg flex flex-col justify-center">
+            <h2 className="text-xl sm:text-2xl font-black text-[#1B5E20] mb-0.5 sm:mb-1">【個人資料蒐集與同意】</h2>
+            <div className="text-base sm:text-lg text-gray-800 leading-snug space-y-0.5 sm:space-y-1 font-bold overflow-hidden flex-1 flex flex-col justify-center tracking-tight">
               <p>歡迎使用本設備。本公司為提供您數位好鄰居X高齡數位互動體驗之服務，需請您輸入手機號碼。</p>
               <p><span className="text-[#2E7D32]">蒐集目的：</span> 僅用於發送簡訊通知與本服務相關之驗證。</p>
               <p><span className="text-[#2E7D32]">個資安全：</span> 我們將嚴格保密，未經您的同意，絕不將您的個資提供給第三方或用於行銷。</p>
-              <p className="text-orange-700 bg-orange-50 p-3 sm:p-4 rounded-xl border border-orange-200 mt-2">
-                💡 點擊「下一步/確認」即表示您已閱讀並同意本公司的［隱私權政策與個資蒐集聲明］。
+              <p className="text-orange-700 bg-orange-50 p-3 sm:p-4 rounded-xl border border-orange-200 mt-1 sm:mt-2 text-sm sm:text-base">
+                點擊「下一步/確認」即表示您已閱讀並同意本公司的［隱私權政策與個資蒐集聲明］。
               </p>
             </div>
           </div>
@@ -276,7 +280,7 @@ function StepWelcome({ onNext, onAdmin, survey, updateSurvey }: { onNext: () => 
         </div>
 
         {/* ⑥ Confirm Button (10%) */}
-        <div className="h-[10%] w-full pt-4 pb-2">
+        <div className="h-[10%] w-full pt-4 pb-2 mt-[10px]">
           <button 
             onClick={handleNext} 
             className="w-full h-full bg-[#2E7D32] text-white text-3xl sm:text-4xl font-black rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none tracking-widest flex items-center justify-center"
