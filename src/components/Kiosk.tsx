@@ -60,7 +60,7 @@ function StepWelcome({ onNext, onAdmin }: { onNext: () => void, onAdmin: () => v
           <div className="bg-white/95 rounded-[2.5rem] border-4 border-[#2E7D32]/30 p-8 shadow-xl w-full flex flex-col gap-6">
             <div className="text-center">
               <h2 className="text-3xl xl:text-4xl font-black text-[#1B5E20]">歡迎體驗高齡數位好生活！</h2>
-              <p className="text-xl font-bold text-gray-600 mt-2">樂齡數位共創推動計畫，完成體驗輕鬆領取活動好禮</p>
+              <p className="text-xl font-bold text-gray-600 mt-2">樂齡數位好夥伴推動計畫，完成體驗輕鬆領取活動好禮</p>
             </div>
             
             <div className="grid grid-cols-3 gap-4 pt-2">
@@ -115,7 +115,7 @@ function StepWelcome({ onNext, onAdmin }: { onNext: () => void, onAdmin: () => v
           <div className="bg-white/95 w-full mx-auto h-full p-6 sm:p-8 rounded-[2.5rem] border-4 border-[#2E7D32]/30 text-center shadow-xl flex flex-col justify-between">
             <div>
               <h2 className="text-2xl sm:text-4xl font-black text-[#1B5E20] mb-2">歡迎體驗高齡數位好生活！</h2>
-              <p className="text-lg sm:text-2xl font-bold text-gray-600">樂齡數位共創推動計畫，完成體驗輕鬆領取好禮</p>
+              <p className="text-lg sm:text-2xl font-bold text-gray-600">樂齡數位好夥伴推動計畫，完成體驗輕鬆領取好禮</p>
             </div>
 
             <div className="grid grid-cols-3 gap-3 sm:gap-4 my-auto">
@@ -178,7 +178,7 @@ function StepConsent({ agreed, onToggle, onBack, onNext }: { agreed: boolean, on
 
           <div className="text-base sm:text-xl leading-relaxed font-medium space-y-3">
             <p>
-              數位發展部 數位產業署委託計畫執行單位-台北市電腦商業同業公會辦理「樂齡數位共創推動計畫－樂齡數位好夥伴推動計畫」(以下簡稱本計畫)，因應個人資料保護法及相關個人資料保護規定，在向您蒐集個人資料之前，依法向您告知下列事項，表示您已閱讀、瞭解並同意接受本同意書之所有內容：
+              數位發展部 數位產業署委託計畫執行單位-台北市電腦商業同業公會辦理「樂齡數位好夥伴推動計畫」(以下簡稱本計畫)，因應個人資料保護法及相關個人資料保護規定，在向您蒐集個人資料之前，依法向您告知下列事項，表示您已閱讀、瞭解並同意接受本同意書之所有內容：
             </p>
             <p>
               <strong className="text-[#1B5E20]">一、蒐集目的及類別：</strong>為辦理本計畫數位體驗活動，確認參與者身分、避免重複參與體驗及領取體驗完成禮，爰蒐集您的手機號碼及年齡資料，僅供本次活動參與紀錄及禮品領取資格核對使用。
@@ -394,7 +394,7 @@ function StepAgeCheck({ value, onChange, onBack, onNext }: { value: string, onCh
 
       <main className="flex-1 min-h-0 p-6 sm:p-8 flex flex-col items-center justify-center gap-6 sm:gap-10 bg-gray-50 overflow-y-auto">
         <div className="bg-white p-6 sm:p-10 rounded-3xl border-4 border-gray-200 shadow-sm text-center max-w-3xl w-full">
-          <p className="text-[#2E7D32] font-bold text-xl sm:text-2xl mb-3">樂齡數位共創推動計畫</p>
+          <p className="text-[#2E7D32] font-bold text-xl sm:text-2xl mb-3">樂齡數位好夥伴推動計畫</p>
           <h2 className="text-3xl sm:text-5xl font-black text-gray-900 leading-snug">
             請問您是否年滿 55 歲（含）以上？
           </h2>
@@ -658,66 +658,14 @@ function StepPaymentSuccess({ onNext }: { onNext: () => void }) {
 }
 
 function StepSurvey1({ onNext, value, update }: { onNext: () => void, value: string, update: (val: string) => void }) {
-  const options = ['A. 依照對方指示', 'B. 掛掉電話，撥打165電話', 'C. 提供個資給對方', 'D. 匯款給對方'];
-  
-  return (
-    <div className="flex-1 flex flex-col bg-white min-h-0 relative">
-      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
-        <h1 className="text-4xl font-extrabold text-center">互動數位體驗</h1>
-        <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
-          <div className="w-[72%] h-full bg-white"></div>
-        </div>
-      </header>
-
-      <main className="flex-1 min-h-0 p-4 sm:p-8 flex flex-col landscape:flex-row gap-4 sm:gap-8 bg-gray-50 overflow-y-auto landscape:items-center">
-        <div className="bg-white p-6 sm:p-8 rounded-2xl border-4 border-gray-200 shadow-sm shrink-0 landscape:flex-1">
-          <p className="text-[#2E7D32] font-bold text-xl mb-2 items-center flex gap-2">
-            內容式防詐小問題
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-gray-900 leading-snug">
-            接到陌生來電，對方要你操作ATM，下列哪一個是正確作法？
-          </h2>
-        </div>
-        
-        <div className="flex-1 flex flex-col gap-3 sm:gap-4 sm:gap-y-6 pb-4 sm:pb-8 shrink-0 min-h-[300px] landscape:min-h-0 landscape:pb-0 w-full">
-          {options.map(opt => (
-            <button 
-              key={opt} 
-              onClick={() => update(opt)}
-              className={`flex-1 w-full min-h-[60px] text-xl sm:text-3xl lg:text-4xl landscape:text-2xl font-black rounded-2xl border-4 transition-colors select-none text-left pl-6 sm:pl-8 ${
-                value === opt 
-                  ? 'border-[#2E7D32] bg-[#E8F5E9] text-[#2E7D32]' 
-                  : 'border-gray-300 bg-white text-gray-700 shadow-sm active:bg-gray-100'
-              }`}
-            >
-              {opt}
-            </button>
-          ))}
-        </div>
-      </main>
-
-      <footer className="p-4 sm:p-8 bg-gray-50 flex gap-6 shrink-0 border-t-2 border-gray-200/50">
-        <button 
-          disabled={!value} 
-          onClick={onNext} 
-          className="w-full disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed  bg-[#2E7D32]  text-white text-3xl sm:text-5xl font-black py-4 sm:py-10 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none"
-        >
-          下一題
-        </button>
-      </footer>
-    </div>
-  );
-}
-
-function StepSurvey2({ onNext, value, update }: { onNext: () => void, value: string, update: (val: string) => void }) {
   const options = ['經常參加', '偶爾參加', '很少參加', '從未參加'];
   
   return (
     <div className="flex-1 flex flex-col bg-white min-h-0 relative">
       <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
-        <h1 className="text-4xl font-extrabold text-center">問卷 2 / 3</h1>
+        <h1 className="text-4xl font-extrabold text-center">問卷 1 / 3</h1>
         <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
-          <div className="w-[81%] h-full bg-white"></div>
+          <div className="w-[72%] h-full bg-white"></div>
         </div>
       </header>
 
@@ -758,8 +706,57 @@ function StepSurvey2({ onNext, value, update }: { onNext: () => void, value: str
   );
 }
 
+function StepSurvey2({ onNext, value, update }: { onNext: () => void, value: string, update: (val: string) => void }) {
+  const options = ['很容易', '還算容易', '有點難', '很困難'];
+
+  return (
+    <div className="flex-1 flex flex-col bg-white min-h-0 relative">
+      <header className=" bg-[#2E7D32]  p-8 text-white flex flex-col items-center gap-2">
+        <h1 className="text-4xl font-extrabold text-center">問卷 2 / 3</h1>
+        <div className="w-full h-2 bg-white/20 rounded-full mt-4 overflow-hidden">
+          <div className="w-[81%] h-full bg-white"></div>
+        </div>
+      </header>
+
+      <main className="flex-1 min-h-0 p-4 sm:p-8 flex flex-col landscape:flex-row gap-4 sm:gap-6 bg-gray-50 overflow-y-auto landscape:items-center">
+        <div className="bg-white p-6 sm:p-8 rounded-2xl border-4 border-gray-200 shadow-sm shrink-0 landscape:flex-[0.5]">
+          <h2 className="text-2xl sm:text-4xl font-black text-gray-900 leading-snug">
+            您覺得今天體驗的項目容易操作嗎？
+          </h2>
+        </div>
+        
+        <div className="flex-1 grid grid-cols-2 gap-3 sm:gap-6 lg:gap-8 min-h-[250px] landscape:min-h-[200px] w-full shrink-0">
+          {options.map(opt => (
+            <button 
+              key={opt} 
+              onClick={() => update(opt)}
+              className={`w-full h-full min-h-[80px] text-xl sm:text-3xl lg:text-5xl landscape:text-3xl font-black rounded-2xl border-4 transition-colors select-none ${
+                value === opt 
+                  ? 'border-[#2E7D32] bg-[#E8F5E9] text-[#2E7D32]' 
+                  : 'border-gray-300 bg-white text-gray-700 shadow-sm active:bg-gray-100'
+              }`}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      </main>
+
+      <footer className="p-4 sm:p-8 bg-gray-50 flex gap-6 shrink-0 border-t-2 border-gray-200/50">
+        <button 
+          disabled={!value} 
+          onClick={onNext} 
+          className="w-full disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed  bg-[#2E7D32]  text-white text-3xl sm:text-5xl font-black py-4 sm:py-10 rounded-2xl shadow-lg shadow-green-900/20 active:scale-95 transition-transform select-none"
+        >
+          下一題
+        </button>
+      </footer>
+    </div>
+  );
+}
+
 function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valueObj: { q3?: string, text?: string }, updateObj: (key: string, val: string) => void }) {
-  const options = ['流程順暢', '介面清楚', '需要協助', '其他建議'];
+  const options = ['會', '有人教我才會', '還不確定', '完全不想'];
 
   return (
     <div className="flex-1 flex flex-col bg-white min-h-0 relative">
@@ -773,7 +770,7 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
       <main className="flex-1 min-h-0 p-4 sm:p-8 flex flex-col landscape:flex-row gap-4 sm:gap-6 bg-gray-50 overflow-y-auto landscape:items-center">
         <div className="bg-white p-6 sm:p-8 rounded-2xl border-4 border-gray-200 shadow-sm shrink-0 landscape:flex-[0.5]">
           <h2 className="text-2xl sm:text-4xl font-black text-gray-900 leading-snug">
-            今天活動的整體感受如何？
+            回家後，您會想用自己的手機再玩看看嗎？
           </h2>
         </div>
         
@@ -782,7 +779,7 @@ function StepSurvey3({ onNext, valueObj, updateObj }: { onNext: () => void, valu
             <button 
               key={opt} 
               onClick={() => updateObj('q3', opt)}
-              className={`w-full h-full min-h-[80px] text-xl sm:text-3xl lg:text-5xl landscape:text-3xl font-black rounded-2xl border-4 transition-colors select-none ${
+              className={`w-full h-full min-h-[80px] text-xl sm:text-3xl lg:text-4xl landscape:text-3xl font-black rounded-2xl border-4 transition-colors select-none px-2 ${
                 valueObj.q3 === opt 
                   ? 'border-[#2E7D32] bg-[#E8F5E9] text-[#2E7D32]' 
                   : 'border-gray-300 bg-white text-gray-700 shadow-sm active:bg-gray-100'
@@ -997,7 +994,7 @@ function StepAdmin({ onClose }: { onClose: () => void }) {
           <button 
             onClick={() => {
               const csvContent = "data:text/csv;charset=utf-8,\uFEFF" 
-                + "填寫時間,聯絡電話,是否年滿55歲,個資同意,Q1: 接到陌生來電，對方要你操作ATM，下列哪一個是正確作法？,Q2: 過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？,Q3: 今天活動的整體感受如何？\n"
+                + "填寫時間,聯絡電話,是否年滿55歲,個資同意,Q1: 過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？,Q2: 您覺得今天體驗的項目容易操作嗎？,Q3: 回家後，您會想用自己的手機再玩看看嗎？\n"
                 + records.map(r => `"${new Date(r.timestamp).toLocaleString()}","${r.phone ? '\t' + r.phone : ''}","${r.ageOver55 || ''}","${r.consent ? '已同意' : ''}","${r.q1||''}","${r.q2||''}","${r.q3||''}"`).join("\n");
               const encodedUri = encodeURI(csvContent);
               const link = document.createElement("a");
@@ -1047,9 +1044,9 @@ function StepAdmin({ onClose }: { onClose: () => void }) {
                     <th className="p-4 sm:p-5 whitespace-nowrap">聯絡電話</th>
                     <th className="p-4 sm:p-5 whitespace-nowrap">是否年滿55歲</th>
                     <th className="p-4 sm:p-5 whitespace-nowrap">個資同意</th>
-                    <th className="p-4 sm:p-5">Q1: 接到陌生來電，對方要你操作ATM，下列哪一個是正確作法？</th>
-                    <th className="p-4 sm:p-5">Q2: 過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？</th>
-                    <th className="p-4 sm:p-5">Q3: 今天活動的整體感受如何？</th>
+                    <th className="p-4 sm:p-5">Q1: 過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？</th>
+                    <th className="p-4 sm:p-5">Q2: 您覺得今天體驗的項目容易操作嗎？</th>
+                    <th className="p-4 sm:p-5">Q3: 回家後，您會想用自己的手機再玩看看嗎？</th>
                   </tr>
                 </thead>
                 <tbody className="text-lg divide-y divide-gray-100">

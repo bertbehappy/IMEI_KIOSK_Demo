@@ -576,7 +576,7 @@ const htmlContent = `<!DOCTYPE html>
             <div class="guide-inner">
               <div>
                 <h2 class="guide-title">歡迎體驗高齡數位好生活！</h2>
-                <p class="guide-subtitle">樂齡數位共創推動計畫，完成體驗輕鬆領取活動好禮</p>
+                <p class="guide-subtitle">樂齡數位好夥伴推動計畫，完成體驗輕鬆領取活動好禮</p>
               </div>
 
               <div class="guide-steps-grid">
@@ -628,7 +628,7 @@ const htmlContent = `<!DOCTYPE html>
 
             <div style="font-size: 1.15rem; line-height: 1.75; color: #1f2937; font-weight: 500; display: flex; flex-direction: column; gap: 0.75rem;">
               <p>
-                數位發展部 數位產業署委託計畫執行單位-台北市電腦商業同業公會辦理「樂齡數位共創推動計畫－樂齡數位好夥伴推動計畫」(以下簡稱本計畫)，因應個人資料保護法及相關個人資料保護規定，在向您蒐集個人資料之前，依法向您告知下列事項，表示您已閱讀、瞭解並同意接受本同意書之所有內容：
+                數位發展部 數位產業署委託計畫執行單位-台北市電腦商業同業公會辦理「樂齡數位好夥伴推動計畫」(以下簡稱本計畫)，因應個人資料保護法及相關個人資料保護規定，在向您蒐集個人資料之前，依法向您告知下列事項，表示您已閱讀、瞭解並同意接受本同意書之所有內容：
               </p>
               <p><strong style="color: #1B5E20;">一、蒐集目的及類別：</strong>為辦理本計畫數位體驗活動，確認參與者身分、避免重複參與體驗及領取體驗完成禮，爰蒐集您的手機號碼及年齡資料，僅供本次活動參與紀錄及禮品領取資格核對使用。</p>
               <p><strong style="color: #1B5E20;">二、個人資料利用之期間、地區、對象及方式：</strong><br>您的個人資料，除涉及國際業務或活動外，將提供本機關(構)於中華民國領域，於上述蒐集目的之必要合理範圍內加以利用至前述蒐集目的消失為止。</p>
@@ -721,7 +721,7 @@ const htmlContent = `<!DOCTYPE html>
 
         <div class="step-main" style="background-color: #f9fafb; gap: 2rem;">
           <div style="width: 100%; max-width: 760px; background: #ffffff; border: 4px solid #e5e7eb; border-radius: 1.5rem; padding: 2rem; text-align: center;">
-            <p style="font-size: 1.3rem; font-weight: 800; color: #2E7D32; margin-bottom: 0.5rem;">樂齡數位共創推動計畫</p>
+            <p style="font-size: 1.3rem; font-weight: 800; color: #2E7D32; margin-bottom: 0.5rem;">樂齡數位好夥伴推動計畫</p>
             <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: #111827;">請問您是否年滿 55 歲（含）以上？</h2>
             <p style="font-size: 1.2rem; font-weight: 700; color: #6b7280; margin-top: 0.75rem;">請點選下方符合您的選項，完成後即可開始點餐體驗</p>
           </div>
@@ -876,23 +876,22 @@ const htmlContent = `<!DOCTYPE html>
       <!-- ================= STEP 9: SURVEY 1 ================= -->
       <div id="step-9" class="step-view">
         <div class="kiosk-header">
-          <h1>互動數位體驗</h1>
+          <h1>問卷 1 / 3</h1>
           <div class="progress-bar"><div class="progress-fill" style="width: 72%;"></div></div>
         </div>
 
         <div class="step-main" style="justify-content: flex-start; padding-top: 2rem;">
           <div style="width: 100%; max-width: 700px; background: #fff; padding: 1.5rem; border-radius: 1.25rem; border: 4px solid #e5e7eb; margin-bottom: 1.5rem;">
-            <p style="color: #2E7D32; font-weight: 900; font-size: 1.2rem; margin-bottom: 0.5rem;">內容式防詐小問題</p>
             <h2 style="font-size: 1.7rem; font-weight: 900; color: #111827; line-height: 1.4;">
-              接到陌生來電，對方要你操作ATM，下列哪一個是正確作法？
+              過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？
             </h2>
           </div>
 
           <div style="width: 100%; max-width: 700px; display: flex; flex-direction: column; gap: 0.85rem;">
-            <button class="option-btn" onclick="selectSurveyOption(1, 'A. 依照對方指示', this)">A. 依照對方指示</button>
-            <button class="option-btn" onclick="selectSurveyOption(1, 'B. 掛掉電話，撥打165電話', this)">B. 掛掉電話，撥打165電話</button>
-            <button class="option-btn" onclick="selectSurveyOption(1, 'C. 提供個資給對方', this)">C. 提供個資給對方</button>
-            <button class="option-btn" onclick="selectSurveyOption(1, 'D. 匯款給對方', this)">D. 匯款給對方</button>
+            <button class="option-btn" onclick="selectSurveyOption(1, '經常參加', this)">經常參加</button>
+            <button class="option-btn" onclick="selectSurveyOption(1, '偶爾參加', this)">偶爾參加</button>
+            <button class="option-btn" onclick="selectSurveyOption(1, '很少參加', this)">很少參加</button>
+            <button class="option-btn" onclick="selectSurveyOption(1, '從未參加', this)">從未參加</button>
           </div>
         </div>
 
@@ -913,15 +912,15 @@ const htmlContent = `<!DOCTYPE html>
         <div class="step-main" style="justify-content: flex-start; padding-top: 2rem;">
           <div style="width: 100%; max-width: 700px; background: #fff; padding: 1.5rem; border-radius: 1.25rem; border: 4px solid #e5e7eb; margin-bottom: 1.5rem;">
             <h2 style="font-size: 1.7rem; font-weight: 900; color: #111827; line-height: 1.4;">
-              過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？
+              您覺得今天體驗的項目容易操作嗎？
             </h2>
           </div>
 
-          <div style="width: 100%; max-width: 700px; display: flex; flex-direction: column; gap: 0.85rem;">
-            <button class="option-btn" onclick="selectSurveyOption(2, '經常參加', this)">經常參加</button>
-            <button class="option-btn" onclick="selectSurveyOption(2, '偶爾參加', this)">偶爾參加</button>
-            <button class="option-btn" onclick="selectSurveyOption(2, '很少參加', this)">很少參加</button>
-            <button class="option-btn" onclick="selectSurveyOption(2, '從未參加', this)">從未參加</button>
+          <div style="width: 100%; max-width: 700px; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(2, '很容易', this)">很容易</button>
+            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(2, '還算容易', this)">還算容易</button>
+            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(2, '有點難', this)">有點難</button>
+            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(2, '很困難', this)">很困難</button>
           </div>
         </div>
 
@@ -942,15 +941,15 @@ const htmlContent = `<!DOCTYPE html>
         <div class="step-main" style="justify-content: flex-start; padding-top: 2rem;">
           <div style="width: 100%; max-width: 700px; background: #fff; padding: 1.5rem; border-radius: 1.25rem; border: 4px solid #e5e7eb; margin-bottom: 1.5rem;">
             <h2 style="font-size: 1.7rem; font-weight: 900; color: #111827; line-height: 1.4;">
-              今天活動的整體感受如何？
+              回家後，您會想用自己的手機再玩看看嗎？
             </h2>
           </div>
 
           <div style="width: 100%; max-width: 700px; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(3, '流程順暢', this)">流程順暢</button>
-            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(3, '介面清楚', this)">介面清楚</button>
-            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(3, '需要協助', this)">需要協助</button>
-            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(3, '其他建議', this)">其他建議</button>
+            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(3, '會', this)">會</button>
+            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(3, '有人教我才會', this)">有人教我才會</button>
+            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(3, '還不確定', this)">還不確定</button>
+            <button class="option-btn" style="text-align: center; padding: 1.5rem 1rem;" onclick="selectSurveyOption(3, '完全不想', this)">完全不想</button>
           </div>
         </div>
 
@@ -1073,9 +1072,9 @@ const htmlContent = `<!DOCTYPE html>
                     <th style="padding: 1rem;">聯絡電話</th>
                     <th style="padding: 1rem;">是否年滿55歲</th>
                     <th style="padding: 1rem;">個資同意</th>
-                    <th style="padding: 1rem;">Q1: 接到陌生來電，操作ATM？</th>
-                    <th style="padding: 1rem;">Q2: 過去一年參加過類似體驗？</th>
-                    <th style="padding: 1rem;">Q3: 今日整體感受？</th>
+                    <th style="padding: 1rem;">Q1: 過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？</th>
+                    <th style="padding: 1rem;">Q2: 您覺得今天體驗的項目容易操作嗎？</th>
+                    <th style="padding: 1rem;">Q3: 回家後，您會想用自己的手機再玩看看嗎？</th>
                   </tr>
                 </thead>
                 <tbody id="admin-tbody"></tbody>
@@ -1527,7 +1526,7 @@ const htmlContent = `<!DOCTYPE html>
       }
 
       const csvContent = "\\uFEFF" 
-        + "填寫時間,聯絡電話,是否年滿55歲,個資同意,Q1: 接到陌生來電操作ATM,Q2: 過去一年類似體驗,Q3: 今日感受\\n"
+        + "填寫時間,聯絡電話,是否年滿55歲,個資同意,Q1: 過去一年內，您有參加過像今天這樣結合數位科技的活動體驗嗎？,Q2: 您覺得今天體驗的項目容易操作嗎？,Q3: 回家後，您會想用自己的手機再玩看看嗎？\\n"
         + records.map(r => \`"\${new Date(r.timestamp).toLocaleString()}","\${r.phone ? '\\t' + r.phone : ''}","\${r.ageOver55 || ''}","\${r.consent ? '已同意' : ''}","\${r.q1||''}","\${r.q2||''}","\${r.q3||''}"\`).join("\\n");
 
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
